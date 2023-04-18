@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import Footer from './components/Footer';
 import Appointment from './components/Appointment';
+import Dashboard from './components/Dashboard'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route exact path="/appointment" element={<Appointment />} />
             <Route exact path="/" element={<SignUp />} />
             <Route exact path="/signin" element={<SignIn />} />
+            <Route exact path="/dashboard" element={<Dashboard />} />
           </Routes>
         </div>
         <Footer />
