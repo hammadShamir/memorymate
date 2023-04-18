@@ -2,10 +2,18 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <footer className="text-center p-4 mt-auto bg-light" >
-            © 2021 Copyright:
-            <a className="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-        </footer>
+<footer  className="bg-light text-center text-white">
+
+
+
+
+
+  <div className="text-center p-3" style={{backgroundColor: '#5F99B490'}}>
+
+    <a className="text-white" href="">@ copyright 2023 | MemoryMate.com</a>
+  </div>
+ 
+</footer>
     )
 }
 
