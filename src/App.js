@@ -7,6 +7,7 @@ import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import Footer from './components/Footer';
+import Appointment from './components/Appointment';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Header />
         <div className="container h-100">
           <Routes>
-            {/* <Route exact path="/" element={<Home />} /> */}
+            <Route exact path="/appointment" element={<Appointment />} />
             <Route exact path="/" element={<SignUp />} />
             <Route exact path="/signin" element={<SignIn />} />
           </Routes>
