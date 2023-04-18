@@ -1,5 +1,12 @@
 .App {
-  height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
+  background:  #F5F5F5;
+  /* background: linear-gradient(to bottom, #E6D0FF, #D1B0FF, #C294FF, #B278FF, #A05EFF); */
+}
+
+
+#menubar{
+  background-color: #A9D3E6 !important;
 }

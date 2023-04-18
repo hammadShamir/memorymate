@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 import { auth } from '../Firebase'
 import Alert from '../components/Alert'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
+
+// images
+import register from '../images/register1.png'
+// css
+import '../cssfiles/signup.css'
 
 const SignUp = () => {
     const [visible, setVisible] = useState({ message: '', isSuccess: false });
@@ -35,40 +40,95 @@ const SignUp = () => {
     };
 
     return (
-        <div className="row h-100">
-            <div className="col-10 col-md-6 m-auto ">
-                <h2 className="text-center">Create an Account</h2>
-                <form onSubmit={handleSignUp}>
-                    <div className="form-floating mb-3">
-                        <input type="text" className="form-control" id="floatingInput" placeholder="First Name" name='fname' />
-                        <label htmlFor="floatingInput">First Name</label>
-                    </div>
-                    <div className="form-floating mb-3">
-                        <input type="text" className="form-control" id="floatingInput" placeholder="Last Name" name='lname' />
-                        <label htmlFor="floatingInput">Last Name</label>
-                    </div>
-                    <div className="form-floating mb-3">
-                        <input type="text" className="form-control" id="floatingInput" placeholder=" Username" name='username' />
-                        <label htmlFor="floatingInput">Username</label>
-                    </div>
-                    <div className="form-floating mb-3">
-                        <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" name='email' />
-                        <label htmlFor="floatingInput">Email address</label>
-                    </div>
-                    <div className="form-floating">
-                        <input type="password" className="form-control" id="floatingPassword" placeholder="Password" name='password' />
-                        <label htmlFor="floatingPassword">Password</label>
-                    </div>
-                    <div className="p-3 text-center">
-                        <button type="submit" className="btn btn-primary px-4">Sign Up</button>
-                    </div>
+        <div className="formbold-main-wrapper">
+  <div className="formbold-form-wrappe">
+  <img  src={register} alt='register ' />
+  
 
-                </form>
-                {visible.message &&
-                    <Alert className={visible.isSuccess ? 'success' : 'danger'} message={visible.message} />
-                }
-            </div>
+    <form   onSubmit={handleSignUp}>
+      <div className="formbold-form-title">
+
+      <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className=" mt-5 mb-4">Register now</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt.
+        </p>
+      </div>
+
+      <div className="formbold-input-flex">
+        <div>
+          <label for="firstname" className="formbold-form-label">
+            First name
+          </label>
+          <input
+            type="text"
+            name="firstname"
+            id="firstname"
+            placeholder='First Name...'
+            className="formbold-form-input"
+          />
         </div>
+        <div>
+          <label for="lastname" className="formbold-form-label"> Last name </label>
+          <input
+            type="text"
+            name="lastname"
+            id="lastname"
+            className="formbold-form-input"
+            placeholder='Last Name...'
+          />
+        </div>
+      </div>
+
+      <div className="formbold-mb-3">
+      <div>
+          <label for="email" className="formbold-form-label"> Email </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            className="formbold-form-input"
+            placeholder='Email...'
+          />
+        </div>
+      </div>
+
+      <div className="formbold-input-flex">
+        <div>
+          <label for="username" className="formbold-form-label">
+            UserName
+          </label>
+          <input
+            type="text"
+            name="username"
+            id="username firstname"
+            placeholder='Username...'
+            className="formbold-form-input"
+          />
+        </div>
+        <div>
+          <label for="password" className="formbold-form-label"> Password </label>
+          <input
+            type="password"
+            name="password"
+            id="password lastname"
+            placeholder='Password...'
+            className="formbold-form-input"
+          />
+        </div>
+      </div>
+
+      <div className="formbold-checkbox-wrapper">
+        <label for="supportCheckbox" className="formbold-checkbox-label">
+          By Registering , I agree to the terms, conditions, and policies
+        </label>
+      </div>
+
+      <button className="formbold-btn btn_lg">Register Now</button>
+    </form>
+  </div>
+</div>
+        
     )
 }
 
