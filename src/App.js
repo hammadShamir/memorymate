@@ -8,6 +8,8 @@ import Header from "./components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import Footer from "./components/Footer";
+import Appointment from "./components/Appointment";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const [user, setUser] = useState();
@@ -30,6 +32,7 @@ function App() {
             <Route exact path="/" element={<SignUp />} />
             <Route exact path="/signin" element={<SignIn />} />
             <Route exact path="/home" element={<Home />} />
+            <Route exact path="/dashboard" element={<Dashboard />} />
           </Routes>
         </div>
         <Footer />

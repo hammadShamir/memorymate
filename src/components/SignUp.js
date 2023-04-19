@@ -23,7 +23,8 @@ const SignUp = () => {
 
             // Create new user
             await auth.createUserWithEmailAndPassword(email.value, password.value);
-            console.log('User created successfully!');
+            alert('User created successfully!');
+            
         } catch (error) {
             console.error(error);
         }
