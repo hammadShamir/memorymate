@@ -101,25 +101,22 @@ const Appointment = () => {
 
   useEffect(() => {
     fetchAppointments();
-  }, []);
+  },[]);
 
 let data ;
-  appointData ?  appointData.map( (obj,index) => {
-    
-   return( <tr>
-    <th scope='col'>#</th>
-    <th scope='col'>{obj.data.name}</th>
-    <th scope='col'>{obj.data.date}</th>
-    <th scope='col'>Time</th>
-    <th scope='col'>Doctor</th>
-    </tr>
-   )
-    console.log(obj.data.date
-      
-      
-      )}): console.log(`number`)
+  appointData ? data = appointData.map((obj,ind) => {
 
+    return (<tr key={obj.data.name}>
+      <th scope='row'>{ind}</th>
+      <td>{obj.data.name}</td>
+      <td>Status</td>
+      <td>{obj.data.date}</td>
+      <td>{obj.data.time}</td>
+      <td>{obj.data.drName}</td>
+      <td>{obj.data.Address}</td>
+    </tr>)
 
+  }) : console.log(`waiting...`)
 
 
 
@@ -229,9 +226,9 @@ let data ;
             />
           </div>
           <div className="formbold-mb-5">
-            <label class="formbold-form-label"> Doctor Name</label>
+            <label className="formbold-form-label"> Doctor Name</label>
 
-            <select class="formbold-form-input" name="occupation" id="doctors"  onChange={(e) => {
+            <select className="formbold-form-input" name="occupation" id="doctors"  onChange={(e) => {
                 setFormData(
                   { ...formData, drName: e.target.value }
                 )
@@ -278,17 +275,17 @@ let data ;
       <MDBTableHead>
         <tr>
         <th scope='col'>#</th>
+        <th scope='col'>Name</th>
         <th scope='col'>Status</th>
         <th scope='col'>Date</th>
         <th scope='col'>Time</th>
         <th scope='col'>Doctor</th>
+        <th scope='col'>Address</th>
         </tr>
       </MDBTableHead>
       <MDBTableBody>
 
-     
-
-
+            {data ? data : <h1 className='text-center' scope='row'>Loading...</h1>}
 
       </MDBTableBody>
     </MDBTable>
