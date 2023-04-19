@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom'
+import logo from '../../src/images/logo.png'
 const Header = ({ user }) => {
     const location = useLocation();
     const currentUrl = location.pathname;
@@ -7,7 +8,9 @@ const Header = ({ user }) => {
     return (
         <nav id='menubar' className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
-                <a className="navbar-brand" href="#">MemoryMate</a>
+                <a className="navbar-brand" href="/home">
+                    <img className='logo' src={logo} alt="" />
+                </a>
                 <form className="d-flex">
                     {
                         user ? (

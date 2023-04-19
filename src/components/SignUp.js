@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { auth } from '../Firebase'
 import { useNavigate } from 'react-router-dom'
 
@@ -24,11 +24,14 @@ const SignUp = () => {
             // Create new user
             await auth.createUserWithEmailAndPassword(email.value, password.value);
             alert('User created successfully!');
-            
+
         } catch (error) {
             console.error(error);
         }
     }
+    useEffect(() => {
+        localStorage.removeItem("accessToken")
+    }, [])
 
     return (
         <div className="formbold-main-wrapper">

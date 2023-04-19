@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { auth } from '../Firebase';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,6 +21,10 @@ function SignIn() {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    localStorage.removeItem("accessToken")
+  }, [])
 
   return (
     <div className="row h-100">
