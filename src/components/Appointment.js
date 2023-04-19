@@ -15,10 +15,9 @@ const Appointment = () => {
     drName: "",
   });
   const [appointData, setappointData] = useState(null);
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    const uid = auth.currentUser.uid;
+
     const appointmentData = {
       name: formData.name,
       phone: formData.phone,
@@ -31,7 +30,7 @@ const Appointment = () => {
     };
     // Storing Data 
     db.collection("users")
-      .doc(uid)
+      .doc(auth.currentUser.uid)
       .collection("appointments")
       .add(appointmentData)
       .then(() => {
@@ -41,7 +40,35 @@ const Appointment = () => {
         console.error('Error adding document: ', error);
       })
   };
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      const uid = auth.currentUser.uid;
+      if (uid) {
+        try {
+          const querySnapshot = await db
+            .collection("users")
+            .doc(uid)
+            .collection("appointments")
+            .get();
+          const appointments = [];
+          querySnapshot.forEach((doc) => {
+            const appointmentData = doc.exists ? doc.data() : null;
+            appointments.push({
+              id: doc.id,
+              data: appointmentData,
+            });
+          });
+          setappointData(appointments);
+        } catch (error) {
+          console.error("Error fetching appointments: ", error);
+        }
+      }
+    };
+    fetchAppointments();
+  }, []);
 
+
+  console.log(appointData);
 
 
 
