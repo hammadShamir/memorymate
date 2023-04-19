@@ -45,6 +45,10 @@ const Appointment = () => {
   const [appointData, setappointData] = useState(null);
   const handleSubmit = (event) => {
     event.preventDefault();
+    if(!formData.name ||!formData.phone||!formData.age||!formData.date||!formData.time||!formData.Address ||!formData.drName){
+      toast.warning('Form Incomplete!');
+      return
+    }
     setisButtonDisabled(true);
     setLoadImg(true);
     const appointmentData = {
