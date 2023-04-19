@@ -96,9 +96,9 @@ const Appointment = () => {
       <div className="formbold-form-wrapper">
         <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className="  mb-4">Appointment Booking Form</h2>
         <hr />
-        <form style={{ position: `relative` }}>
-          <div class="formbold-mb-5">
-            <label for="name" class="formbold-form-label"> Full Name </label>
+        <form  style={{position:`relative`}}>
+          <div className="formbold-mb-5">
+            <label htmlFor="name" className="formbold-form-label"> Full Name </label>
             <input
               type="text"
               name="name"
@@ -210,7 +210,7 @@ const Appointment = () => {
           </div>
 
           <div>
-            <button onClick={handleSubmit} style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} class="formbold-btn">Book Appointment</button>
+            <button onClick={handleSubmit} style={{background: isBtnDisabled ? `gray` : `#91c3db`,cursor: isBtnDisabled ? `wait`: ``}} className="formbold-btn">Book Appointment</button>
           </div>
           <div>
             <button style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} class="formbold-btn">View Appointment</button>

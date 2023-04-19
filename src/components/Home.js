@@ -4,8 +4,11 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slide from './Slide';
-import Slide_1 from '../images/slide-1.png'
-import Slide_2 from '../images/slide-2.jpeg'
+import gallery from '../images/gallery.png'
+import appointment from '../images/appointment.png'
+import medicationRemainder from '../images/medicationReminder.png'
+import contactus from '../images/contactus.png'
+
 const SliderComponent = () => {
 
     // Fetching User Information
@@ -30,26 +33,26 @@ const SliderComponent = () => {
     return (
         <Slider {...settings} >
             <Slide
-                img={Slide_1}
+                img={appointment}
                 heading={`Welcome ${user && user.displayName}`}
-                para={"What would you like to explore today?"}
+                para={"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque nostrum minima fugit tempora illum tempore, rem, libero reiciendis eius aperiam similique, id officiis odit obcaecati sapiente sit voluptatibus expedita! Quo necessitatibus eius quidem ad?"}
                 button={"Appointment"}
                 path={'/appointment'}
             />
             <Slide
-                img={Slide_1}
-                heading={`Remider for taking Medicine`}
+                img={medicationRemainder}
+                heading={`Remider for taking Medication`}
                 para={"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque nostrum minima fugit tempora illum tempore, rem, libero reiciendis eius aperiam similique, id officiis odit obcaecati sapiente sit voluptatibus expedita! Quo necessitatibus eius quidem ad?"}
                 button={"Reminder"}
                 path={'/remainder'}
             />
             <Slide
-                img={Slide_1}
+                img={gallery}
                 heading={`Memory Album`}
                 para={"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque nostrum minima fugit tempora illum tempore, rem, libero reiciendis eius aperiam similique, id officiis odit obcaecati sapiente sit voluptatibus expedita! Quo necessitatibus eius quidem ad?"}
                 button={"Gallery"} />
             <Slide
-                img={Slide_1}
+                img={contactus}
                 heading={`Contacts`}
                 para={"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque nostrum minima fugit tempora illum tempore, rem, libero reiciendis eius aperiam similique, id officiis odit obcaecati sapiente sit voluptatibus expedita! Quo necessitatibus eius quidem ad?"}
                 button={"Contact"} />

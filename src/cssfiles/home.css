@@ -1,0 +1,20 @@
+.small-button {
+    background-image: linear-gradient(to bottom, #91c3db, #7fa8cc);
+    color: #ffffff;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    width: 300px;
+    text-decoration: none;
+   
+  }
+  
+  .small-button:hover {
+    opacity: 0.8;
+    color: orange;
+  }
+  
