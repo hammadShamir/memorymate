@@ -5,8 +5,8 @@ const Header = ({ user }) => {
     const location = useLocation();
     const currentUrl = location.pathname;
 
-    const token = localStorage.getItem('accessToken');
 
+    const token = localStorage.getItem("accessToken")
 
     return (
         <nav id='menubar' className="navbar navbar-expand-lg navbar-light bg-light">
@@ -17,13 +17,13 @@ const Header = ({ user }) => {
                 <form className="d-flex">
                     {
                         token ? (
-                            <Link to="/" className="btn btn-outline-warning" type="submit" onClick={() => {
+                            <Link to="/signin" className="btn btn-outline-warning" type="submit" onClick={() => {
                                 localStorage.removeItem('accessToken');
                             }}>
                                 Sign Out
                             </Link>
                         ) : (
-                            currentUrl === "/" ? (
+                            currentUrl === "/signin" ? (
                                 <Link to="/signup" className="btn btn-outline-warning" type="submit">
                                     Sign UP
                                 </Link>

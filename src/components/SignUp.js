@@ -12,8 +12,8 @@ import '../cssfiles/signup.css'
 
 const SignUp = () => {
 
-    const [isBtnDisabled,setisButtonDisabled] = useState(false);
-    const [loadImg ,setLoadImg] = useState(false);
+    const [isBtnDisabled, setisButtonDisabled] = useState(false);
+    const [loadImg, setLoadImg] = useState(false);
 
     const navigate = useNavigate()
     const [alert, setAlert] = useState({ type: '', message: '' })
@@ -40,6 +40,9 @@ const SignUp = () => {
                 username: username.value
             });
             toast.success(`User ${username.value} created successfully!`);
+            setTimeout(() => {
+                navigate('/')
+            }, 2000);
             setLoadImg(false);
             setisButtonDisabled(false);
         } catch (error) {
@@ -57,7 +60,7 @@ const SignUp = () => {
             <div className="formbold-form-wrappe">
                 <img src={register} alt='register ' />
 
-                <form onSubmit={handleSignUp} style={{position:`relative`}}>
+                <form onSubmit={handleSignUp} style={{ position: `relative` }}>
                     <div className="formbold-form-title">
                         <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className=" mt-5 mb-4">Register now</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
@@ -91,8 +94,8 @@ const SignUp = () => {
                     <div className="formbold-checkbox-wrapper">
                         <label htmlFor="supportCheckbox" className="formbold-checkbox-label"> By Registering , I agree to the terms, conditions, and policies </label>
                     </div>
-                    <button style={{background: isBtnDisabled ? `gray` : `#91c3db`,cursor: isBtnDisabled ? `wait`: ``}} className="formbold-btn btn_lg" disabled={isBtnDisabled}>Register Now</button>
-                <img src={loading} style={{position:`absolute`,top:`50%`,left:`50%`,transform:`translate(-50%,-50%)`,display: loadImg ? `flex`:`none` }}/>
+                    <button style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} className="formbold-btn btn_lg" disabled={isBtnDisabled}>Register Now</button>
+                    <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
                 </form>
                 <ToastContainer
                     position="top-right"

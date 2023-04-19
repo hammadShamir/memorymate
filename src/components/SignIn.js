@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function SignIn() {
 
-  const [isBtnDisabled,setisButtonDisabled] = useState(false);
+  const [isBtnDisabled, setisButtonDisabled] = useState(false);
   const [loadImg, setLoadImg] = useState(false);
 
   const [email, setEmail] = useState('');
@@ -20,18 +20,18 @@ function SignIn() {
     event.preventDefault();
     setLoadImg(true);
     setisButtonDisabled(true);
-   
+
     try {
       await auth.signInWithEmailAndPassword(email, password);
       const user = auth.currentUser;
       const token = await user.getIdToken();
-      toast.success(`Login Successfull`);
       localStorage.setItem('accessToken', token);
       toast.success(`Logged in Successfully`);
       setLoadImg(false);
       setisButtonDisabled(false);
-      setTimeout(navigate('/home'), 3000);
-
+      setTimeout(() => {
+        navigate('/home')
+      }, 2000);
 
     } catch (error) {
       console.log(error.message);
@@ -49,7 +49,7 @@ function SignIn() {
     <div className="row h-100">
       <div className="col-10 col-md-6 m-auto mt-5">
         <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className=" mt-5 mb-4 text-center">Login</h2>
-        <form onSubmit={handleSignIn} style={{position:`relative`}}>
+        <form onSubmit={handleSignIn} style={{ position: `relative` }}>
           <div className="formbold-mb-3">
             <div>
               <label htmlFor="email" className="formbold-form-label"> Email </label>
@@ -81,7 +81,7 @@ function SignIn() {
           </div>
 
           <div className=" text-center  mb-2">
-            <button style={{background: isBtnDisabled ? `gray` : `#91c3db`,cursor: isBtnDisabled ? `wait`: ``}} className="formbold-btn btn_lg" disabled={isBtnDisabled} type="submit" >Sign In</button>
+            <button style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} className="formbold-btn btn_lg" disabled={isBtnDisabled} type="submit" >Sign In</button>
           </div>
           <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
         </form>

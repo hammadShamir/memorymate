@@ -32,15 +32,15 @@ function App() {
         <Header key={key} user={user} />
         <div className="container h-100">
           <Routes>
+            <Route exact path="/signin" element={<SignIn />} />
             <Route exact path="/signup" element={<SignUp />} />
-            <Route exact path="/" element={<SignIn />} />
-            <Route exact path='/' element={<ProtectedRoute />} />
-            <Route exact path="/home" element={<Home />} />
-            <Route exact path="/dashboard" element={<Dashboard />} />
-            <Route exact path="/appointment" element={<Appointment />} />
-            <Route exact path="/remainder" element={<Remainder />} />
-            <Route exact path="/alert" element={<Modal />} />
-
+            <Route exact path='/' element={<ProtectedRoute />}>
+              <Route exact path="/home" element={<Home />} />
+              <Route exact path="/dashboard" element={<Dashboard />} />
+              <Route exact path="/appointment" element={<Appointment />} />
+              <Route exact path="/remainder" element={<Remainder />} />
+              <Route exact path="/alert" element={<Modal />} />
+            </Route>
           </Routes>
         </div>
         <Footer />
