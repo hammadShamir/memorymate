@@ -4,10 +4,26 @@ import '../cssfiles/appointment.css'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+//modal
+import {
+  MDBBtn,
+  MDBModal,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody
+} from 'mdb-react-ui-kit';
+
+
 // images
 import loading from '../images/loading.gif'
 
 const Appointment = () => {
+
+  const [optSmModal, setOptSmModal] = useState(false);
+  const toggleShow = () => setOptSmModal(!optSmModal);
 
   const [isBtnDisabled, setisButtonDisabled] = useState(false);
   const [loadImg, setLoadImg] = useState(false);
@@ -53,32 +69,37 @@ const Appointment = () => {
         setisButtonDisabled(false);
       })
   };
-  useEffect(() => {
-    const fetchAppointments = async () => {
-      const uid = auth.currentUser.uid;
-      if (uid) {
-        try {
-          const querySnapshot = await db
-            .collection("users")
-            .doc(uid)
-            .collection("appointments")
-            .get();
-          const appointments = [];
-          querySnapshot.forEach((doc) => {
-            const appointmentData = doc.exists ? doc.data() : null;
-            appointments.push({
-              id: doc.id,
-              data: appointmentData,
-            });
+
+
+  const fetchAppointments = async () => {
+    const uid = auth.currentUser.uid;
+    if (uid) {
+      try {
+        const querySnapshot = await db
+          .collection("users")
+          .doc(uid)
+          .collection("appointments")
+          .get();
+        const appointments = [];
+        querySnapshot.forEach((doc) => {
+          const appointmentData = doc.exists ? doc.data() : null;
+          appointments.push({
+            id: doc.id,
+            data: appointmentData,
           });
-          setappointData(appointments);
-        } catch (error) {
-          console.error("Error fetching appointments: ", error);
-        }
+        });
+        setappointData(appointments);
+      } catch (error) {
+        console.error("Error fetching appointments: ", error);
       }
-    };
+    }
+  };
+
+
+
+  useEffect(() => {
     fetchAppointments();
-  }, []);
+  });
 
 
   console.log(appointData);
@@ -192,31 +213,30 @@ const Appointment = () => {
               }}
             />
           </div>
-
           <div className="formbold-mb-5">
-            <label htmlFor="name" className="formbold-form-label"> Doctor Name </label>
-            <input
-              type="text"
-              name="drName"
-              id="drName"
-              placeholder="Enter Doctor Name"
-              className="formbold-form-input"
-              onChange={(e) => {
+            <label class="formbold-form-label"> Doctor Name</label>
+
+            <select class="formbold-form-input" name="occupation" id="doctors"  onChange={(e) => {
                 setFormData(
                   { ...formData, drName: e.target.value }
                 )
-              }}
-            />
-          </div>
+              }}>
+            <option value="John_White">John White</option>
+            <option value="Tyler_Smith">Tyler Smith</option>
+            <option value="Lewis_Walker">Lewis Walker</option>
+            <option value="Burton_Robinson">Burton Robinson</option>
+            </select>
+        </div>
+         
 
           <div>
             <button onClick={handleSubmit} style={{background: isBtnDisabled ? `gray` : `#91c3db`,cursor: isBtnDisabled ? `wait`: ``}} className="formbold-btn">Book Appointment</button>
           </div>
           <div>
-            <button style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} class="formbold-btn">View Appointment</button>
           </div>
           <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
         </form>
+        <button onClick={toggleShow} style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} className="formbold-btn">View Appointment</button>
         <ToastContainer
           position="top-right"
           autoClose={3000}
@@ -229,92 +249,32 @@ const Appointment = () => {
           pauseOnHover
           theme="colored"
         />
+
+
+      <MDBModal show={optSmModal} tabIndex='-1' setShow={setOptSmModal}>
+        <MDBModalDialog size='lg'>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>Small modal</MDBModalTitle>
+              <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody>
+
+
+
+
+
+
+            </MDBModalBody>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
+
+
+
       </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // <div>
-    //     <form >
-    //         <div>
-    //             <label htmlFor="firstname" className="formbold-form-label">
-    //                 Name
-    //             </label>
-    //             <input
-    //                 type="text"
-    //                 name="firstname"
-    //                 id="firstname"
-    //                 placeholder=' Name...'
-    //                 className="formbold-form-input"
-    //                 onChange={(e) => {
-    //                     setFormData(
-    //                         { ...formData, name: e.target.value }
-    //                     )
-    //                 }}
-    //             />
-    //         </div>
-    //         <div>
-    //             <label htmlFor="firstname" className="formbold-form-label">
-    //                 Age
-    //             </label>
-    //             <input
-    //                 type="text"
-    //                 name="firstname"
-    //                 id="firstname"
-    //                 placeholder='Age...'
-    //                 className="formbold-form-input"
-    //                 onChange={(e) => {
-    //                     setFormData(
-    //                         { ...formData, age: e.target.value }
-    //                     )
-    //                 }}
-    //             />
-    //         </div>
-    //         <div>
-    //             <label htmlFor="firstname" className="formbold-form-label">
-    //                 city
-    //             </label>
-    //             <input
-    //                 type="text"
-    //                 name="firstname"
-    //                 id="firstname"
-    //                 placeholder='City...'
-    //                 className="formbold-form-input"
-    //                 onChange={(e) => {
-    //                     setFormData(
-    //                         { ...formData, city: e.target.value }
-    //                     )
-    //                 }}
-    //             />
-    //         </div>
-    //         <button onClick={handleSubmit} className="formbold-btn btn_lg">Register Now</button>
-    //     </form>
-    // </div>
   )
 }
 
