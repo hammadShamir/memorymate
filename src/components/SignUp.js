@@ -28,6 +28,8 @@ const SignUp = () => {
             const emailExists = await auth.fetchSignInMethodsForEmail(email.value);
             if (emailExists.length > 0) {
                 toast.error('Email already exists!');
+                setLoadImg(false);
+                setisButtonDisabled(false);
                 return;
             }
 
