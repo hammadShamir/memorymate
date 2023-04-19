@@ -41,6 +41,7 @@ const SliderComponent = () => {
                 heading={`Remider for taking Medicine`}
                 para={"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque nostrum minima fugit tempora illum tempore, rem, libero reiciendis eius aperiam similique, id officiis odit obcaecati sapiente sit voluptatibus expedita! Quo necessitatibus eius quidem ad?"}
                 button={"Reminder"}
+                path={'/remainder'}
             />
             <Slide
                 img={Slide_1}

@@ -2,8 +2,17 @@ import React, { useEffect, useState } from 'react'
 import db, { auth } from '../Firebase';
 import '../cssfiles/appointment.css'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// images
+import loading from '../images/loading.gif'
 
 const Appointment = () => {
+
+  const [isBtnDisabled,setisButtonDisabled] = useState(false);
+  const [loadImg ,setLoadImg] = useState(false);
+
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -17,6 +26,9 @@ const Appointment = () => {
   const [appointData, setappointData] = useState(null);
   const handleSubmit = (event) => {
     event.preventDefault();
+    setisButtonDisabled(true);
+    setLoadImg(true);
+    const uid = auth.currentUser.uid;
 
     const appointmentData = {
       name: formData.name,
@@ -34,10 +46,15 @@ const Appointment = () => {
       .collection("appointments")
       .add(appointmentData)
       .then(() => {
-        alert("Appointment Added Successfully");
+        toast.success(`Appointment Added Successfully!`);
+        setLoadImg(false);
+        setisButtonDisabled(false);
       })
       .catch((error) => {
         console.error('Error adding document: ', error);
+        toast.error('Failed to set Appointment');
+        setLoadImg(false);
+        setisButtonDisabled(false);
       })
   };
   useEffect(() => {
@@ -83,9 +100,9 @@ const Appointment = () => {
       <div className="formbold-form-wrapper">
         <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className="  mb-4">Appointment Booking Form</h2>
         <hr />
-        <form >
-          <div className="formbold-mb-5">
-            <label htmlFor="name" className="formbold-form-label"> Full Name </label>
+        <form  style={{position:`relative`}}>
+          <div class="formbold-mb-5">
+            <label for="name" class="formbold-form-label"> Full Name </label>
             <input
               type="text"
               name="name"
@@ -197,9 +214,22 @@ const Appointment = () => {
           </div>
 
           <div>
-            <button onClick={handleSubmit} className="formbold-btn">Book Appointment</button>
+            <button onClick={handleSubmit} style={{background: isBtnDisabled ? `gray` : `#91c3db`,cursor: isBtnDisabled ? `wait`: ``}} class="formbold-btn">Book Appointment</button>
           </div>
+          <img src={loading} style={{position:`absolute`,top:`50%`,left:`50%`,transform:`translate(-50%,-50%)`,display: loadImg ? `flex`:`none` }}/>
         </form>
+        <ToastContainer
+                    position="top-right"
+                    autoClose={3000}
+                    hideProgressBar
+                    newestOnTop
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="colored"
+                />
       </div>
     </div>
 

@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import Appointment from "./components/Appointment";
 import Dashboard from "./components/Dashboard";
 import ProtectedRoute from "./components/Protected";
+import Remainder from "./components/Remainder";
 function App() {
   const [user, setUser] = useState();
   const [key, setkey] = useState();
@@ -32,11 +33,12 @@ function App() {
           <Routes>
             <Route exact path="/signup" element={<SignUp />} />
             <Route exact path="/" element={<SignIn />} />
-            <Route exact path='/' element={<ProtectedRoute />}>
-              <Route exact path="/home" element={<Home />} />
-              <Route exact path="/dashboard" element={<Dashboard />} />
-              <Route exact path="/appointment" element={<Appointment />} />
-            </Route>
+            <Route exact path='/' element={<ProtectedRoute />}/>
+            <Route exact path="/home" element={<Home />} />
+            <Route exact path="/dashboard" element={<Dashboard />} />
+            <Route exact path="/appointment" element={<Appointment />} />
+            <Route exact path="/remainder" element={<Remainder />} />
+            
           </Routes>
         </div>
         <Footer />
