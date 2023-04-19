@@ -9,10 +9,8 @@ import loading from '../images/loading.gif'
 
 const Appointment = () => {
 
-  const [isBtnDisabled,setisButtonDisabled] = useState(false);
-  const [loadImg ,setLoadImg] = useState(false);
-
-
+  const [isBtnDisabled, setisButtonDisabled] = useState(false);
+  const [loadImg, setLoadImg] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -28,8 +26,6 @@ const Appointment = () => {
     event.preventDefault();
     setisButtonDisabled(true);
     setLoadImg(true);
-    const uid = auth.currentUser.uid;
-
     const appointmentData = {
       name: formData.name,
       phone: formData.phone,
@@ -100,7 +96,7 @@ const Appointment = () => {
       <div className="formbold-form-wrapper">
         <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className="  mb-4">Appointment Booking Form</h2>
         <hr />
-        <form  style={{position:`relative`}}>
+        <form style={{ position: `relative` }}>
           <div class="formbold-mb-5">
             <label for="name" class="formbold-form-label"> Full Name </label>
             <input
@@ -214,22 +210,25 @@ const Appointment = () => {
           </div>
 
           <div>
-            <button onClick={handleSubmit} style={{background: isBtnDisabled ? `gray` : `#91c3db`,cursor: isBtnDisabled ? `wait`: ``}} class="formbold-btn">Book Appointment</button>
+            <button onClick={handleSubmit} style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} class="formbold-btn">Book Appointment</button>
           </div>
-          <img src={loading} style={{position:`absolute`,top:`50%`,left:`50%`,transform:`translate(-50%,-50%)`,display: loadImg ? `flex`:`none` }}/>
+          <div>
+            <button style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} class="formbold-btn">View Appointment</button>
+          </div>
+          <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
         </form>
         <ToastContainer
-                    position="top-right"
-                    autoClose={3000}
-                    hideProgressBar
-                    newestOnTop
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="colored"
-                />
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </div>
     </div>
 

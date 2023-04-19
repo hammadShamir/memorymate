@@ -12,6 +12,7 @@ import Appointment from "./components/Appointment";
 import Dashboard from "./components/Dashboard";
 import ProtectedRoute from "./components/Protected";
 import Remainder from "./components/Remainder";
+import Modal from "./components/Modal";
 function App() {
   const [user, setUser] = useState();
   const [key, setkey] = useState();
@@ -33,12 +34,13 @@ function App() {
           <Routes>
             <Route exact path="/signup" element={<SignUp />} />
             <Route exact path="/" element={<SignIn />} />
-            <Route exact path='/' element={<ProtectedRoute />}/>
+            <Route exact path='/' element={<ProtectedRoute />} />
             <Route exact path="/home" element={<Home />} />
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/appointment" element={<Appointment />} />
             <Route exact path="/remainder" element={<Remainder />} />
-            
+            <Route exact path="/alert" element={<Modal />} />
+
           </Routes>
         </div>
         <Footer />
