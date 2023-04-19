@@ -24,7 +24,7 @@ const Appointment = () => {
             city: formData.city
         })
             .then(() => {
-                console.log("Appointment Added Successfully");
+                alert("Appointment Added Successfully");
             })
             .catch((error) => {
                 console.error('Error adding document: ', error);
@@ -151,7 +151,7 @@ const Appointment = () => {
       </div>
 
       <div>
-        <button class="formbold-btn">Book Appointment</button>
+        <button onClick={handleSubmit} class="formbold-btn">Book Appointment</button>
       </div>
     </form>
   </div>
