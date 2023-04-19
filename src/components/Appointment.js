@@ -22,6 +22,18 @@ import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 // images
 import loading from '../images/loading.gif'
 
+const initialize = {
+  name: "",
+  phone: "",
+  age: "",
+  email: "",
+  date: "",
+  time: "",
+  Address: "",
+  drName: "",
+}
+
+
 const Appointment = () => {
 
   const [optSmModal, setOptSmModal] = useState(false);
@@ -29,16 +41,7 @@ const Appointment = () => {
 
   const [isBtnDisabled, setisButtonDisabled] = useState(false);
   const [loadImg, setLoadImg] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    age: "",
-    email: "",
-    date: "",
-    time: "",
-    Address: "",
-    drName: "",
-  });
+  const [formData, setFormData] = useState(initialize);
   const [appointData, setappointData] = useState(null);
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -61,6 +64,7 @@ const Appointment = () => {
       .add(appointmentData)
       .then(() => {
         toast.success(`Appointment Added Successfully!`);
+        setFormData(initialize);
         setLoadImg(false);
         setisButtonDisabled(false);
       })
@@ -101,7 +105,7 @@ const Appointment = () => {
 
   useEffect(() => {
     fetchAppointments();
-  },[]);
+  });
 
 let data ;
   appointData ? data = appointData.map((obj,ind) => {
@@ -143,6 +147,7 @@ let data ;
                   { ...formData, name: e.target.value }
                 )
               }}
+              value={formData.name}
             />
           </div>
           <div className="formbold-mb-5">
@@ -158,6 +163,7 @@ let data ;
                   { ...formData, phone: e.target.value }
                 )
               }}
+              value={formData.phone}
             />
           </div>
           <div className="formbold-mb-5">
@@ -173,6 +179,7 @@ let data ;
                   { ...formData, age: e.target.value }
                 )
               }}
+              value={formData.age}
             />
           </div>
           <div className="flex flex-wrap formbold--mx-3">
@@ -189,6 +196,7 @@ let data ;
                       { ...formData, date: e.target.value }
                     )
                   }}
+                  value={formData.date}
                 />
               </div>
             </div>
@@ -205,6 +213,7 @@ let data ;
                       { ...formData, time: e.target.value }
                     )
                   }}
+                  value={formData.time}
                 />
               </div>
             </div>
@@ -223,6 +232,7 @@ let data ;
                   { ...formData, Address: e.target.value }
                 )
               }}
+              value={formData.Address}
             />
           </div>
           <div className="formbold-mb-5">
@@ -232,7 +242,9 @@ let data ;
                 setFormData(
                   { ...formData, drName: e.target.value }
                 )
-              }}>
+              }}
+              value={formData.drName}
+              >
             <option value="John_White">John White</option>
             <option value="Tyler_Smith">Tyler Smith</option>
             <option value="Lewis_Walker">Lewis Walker</option>
@@ -285,7 +297,7 @@ let data ;
       </MDBTableHead>
       <MDBTableBody>
 
-            {data ? data : <h1 className='text-center' scope='row'>Loading...</h1>}
+            {data ? data : `Loading...`}
 
       </MDBTableBody>
     </MDBTable>
