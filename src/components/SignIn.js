@@ -2,23 +2,33 @@ import React, { useEffect, useState } from 'react';
 import { auth } from '../Firebase';
 import { useNavigate } from 'react-router-dom';
 
+import loading from '../images/loading.gif'
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function SignIn() {
+
+  const [loadImg ,setLoadImg] = useState(false);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
   const handleSignIn = async (event) => {
     event.preventDefault();
-
+    setLoadImg(true);
     try {
       await auth.signInWithEmailAndPassword(email, password);
       const user = auth.currentUser;
       const token = await user.getIdToken();
       localStorage.setItem('accessToken', token);
-      console.log("loged in successfully");
+      
       navigate('/home')
+      setLoadImg(false);
     } catch (error) {
-      console.error(error);
+      toast.error(`Email or Password is Incorrect`);
+      setLoadImg(false);
     }
   };
 
@@ -64,7 +74,7 @@ function SignIn() {
           <div className="p-3 text-center  mb-2">
             <button type="submit" className="formbold-btn btn_lg">Sign In</button>
           </div>
-
+          <img src={loading} style={{position:`absolute`,top:`50%`,left:`50%`,transform:`translate(-50%,-50%)`,display: loadImg ? `flex`:`none` }}/>
         </form>
 
       </div>

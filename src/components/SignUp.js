@@ -2,12 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { auth } from '../Firebase'
 import { useNavigate } from 'react-router-dom'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // images
 import register from '../images/register1.png'
+import loading from '../images/loading.gif'
 // css
 import '../cssfiles/signup.css'
 
 const SignUp = () => {
+
+    const [isBtnDisabled,setisButtonDisabled] = useState(false);
+    const [loadImg ,setLoadImg] = useState(false);
+
     const navigate = useNavigate()
     const [alert, setAlert] = useState({ type: '', message: '' })
     const handleSignUp = async (e) => {
@@ -15,9 +22,12 @@ const SignUp = () => {
         const { email, password, firstname, lastname, username } = e.target.elements;
         try {
             // Check if email already exists
+            setisButtonDisabled(true);
+            setLoadImg(true);
+
             const emailExists = await auth.fetchSignInMethodsForEmail(email.value);
             if (emailExists.length > 0) {
-                console.log('Email already exists!');
+                toast.error('Email already exists!');
                 return;
             }
 
@@ -27,10 +37,13 @@ const SignUp = () => {
                 displayName: `${firstname.value} ${lastname.value}`,
                 username: username.value
             });
-            console.log('User created successfully!');
-
+            toast.success(`User ${username.value} created successfully!`);
+            setLoadImg(false);
+            setisButtonDisabled(false);
         } catch (error) {
-            console.error(error);
+            toast.error('Failed to create user!');
+            setLoadImg(false);
+            setisButtonDisabled(false);
         }
     }
     useEffect(() => {
@@ -41,7 +54,8 @@ const SignUp = () => {
         <div className="formbold-main-wrapper">
             <div className="formbold-form-wrappe">
                 <img src={register} alt='register ' />
-                <form onSubmit={handleSignUp}>
+
+                <form onSubmit={handleSignUp} style={{position:`relative`}}>
                     <div className="formbold-form-title">
                         <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className=" mt-5 mb-4">Register now</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
@@ -75,8 +89,21 @@ const SignUp = () => {
                     <div className="formbold-checkbox-wrapper">
                         <label htmlFor="supportCheckbox" className="formbold-checkbox-label"> By Registering , I agree to the terms, conditions, and policies </label>
                     </div>
-                    <button className="formbold-btn btn_lg">Register Now</button>
+                    <button style={{background: isBtnDisabled ? `gray` : `#91c3db`,cursor: isBtnDisabled ? `wait`: ``}} className="formbold-btn btn_lg" disabled={isBtnDisabled}>Register Now</button>
+                <img src={loading} style={{position:`absolute`,top:`50%`,left:`50%`,transform:`translate(-50%,-50%)`,display: loadImg ? `flex`:`none` }}/>
                 </form>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={3000}
+                    hideProgressBar
+                    newestOnTop
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="colored"
+                />
             </div>
         </div>
     )
