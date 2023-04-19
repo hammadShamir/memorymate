@@ -16,6 +16,7 @@ function App() {
   const [key, setkey] = useState();
 
   //TODO Run UseEffect when url Change
+
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
@@ -29,8 +30,8 @@ function App() {
         <Header key={key} user={user} />
         <div className="container h-100">
           <Routes>
-            <Route exact path="/" element={<SignUp />} />
-            <Route exact path="/signin" element={<SignIn />} />
+            <Route exact path="/signup" element={<SignUp />} />
+            <Route exact path="/" element={<SignIn />} />
             <Route exact path='/' element={<ProtectedRoute />}>
               <Route exact path="/home" element={<Home />} />
               <Route exact path="/dashboard" element={<Dashboard />} />

@@ -12,7 +12,7 @@ const SignUp = () => {
     const [alert, setAlert] = useState({ type: '', message: '' })
     const handleSignUp = async (e) => {
         e.preventDefault()
-        const { email, password } = e.target.elements;
+        const { email, password, firstname, lastname, username } = e.target.elements;
         try {
             // Check if email already exists
             const emailExists = await auth.fetchSignInMethodsForEmail(email.value);
@@ -22,8 +22,12 @@ const SignUp = () => {
             }
 
             // Create new user
-            await auth.createUserWithEmailAndPassword(email.value, password.value);
-            alert('User created successfully!');
+            const userCredential = await auth.createUserWithEmailAndPassword(email.value, password.value);
+            await userCredential.user.updateProfile({
+                displayName: `${firstname.value} ${lastname.value}`,
+                username: username.value
+            });
+            console.log('User created successfully!');
 
         } catch (error) {
             console.error(error);

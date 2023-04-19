@@ -14,19 +14,19 @@ const Header = ({ user }) => {
                 <form className="d-flex">
                     {
                         user ? (
-                            <Link to="/signin" className="btn btn-outline-warning" type="submit" onClick={() => {
+                            <Link to="/" className="btn btn-outline-warning" type="submit" onClick={() => {
                                 localStorage.removeItem('accessToken');
                             }}>
                                 Sign Out
                             </Link>
                         ) : (
                             currentUrl === "/" ? (
-                                <Link to="/signin" className="btn btn-outline-warning" type="submit">
-                                    Sign In
+                                <Link to="/signup" className="btn btn-outline-warning" type="submit">
+                                    Sign UP
                                 </Link>
                             ) : (
                                 <Link to="/" className="btn btn-outline-warning" type="submit">
-                                    Sign Up
+                                    Sign In
                                 </Link>
                             )
                         )
