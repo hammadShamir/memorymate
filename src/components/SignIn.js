@@ -22,13 +22,15 @@ function SignIn() {
       await auth.signInWithEmailAndPassword(email, password);
       const user = auth.currentUser;
       const token = await user.getIdToken();
-      toast.success(`Login Successfull`);
       localStorage.setItem('accessToken', token);
+      toast.success(`Logged in Successfully`);
       setLoadImg(false);
-      
-      setTimeout(navigate('/home'), 3000);
 
-     
+      setTimeout(() => {
+        navigate('/home')
+      }, 2000);
+
+
     } catch (error) {
       console.log(error.message);
       toast.error(`Email or Password is Incorrect`);
@@ -81,17 +83,17 @@ function SignIn() {
           <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
         </form>
         <ToastContainer
-                    position="top-right"
-                    autoClose={3000}
-                    hideProgressBar
-                    newestOnTop
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="colored"
-                />
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </div>
     </div>
   );
