@@ -16,6 +16,8 @@ import {
   MDBModalBody
 } from 'mdb-react-ui-kit';
 
+import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
+
 
 // images
 import loading from '../images/loading.gif'
@@ -99,10 +101,23 @@ const Appointment = () => {
 
   useEffect(() => {
     fetchAppointments();
-  });
+  }, []);
 
-
-  console.log(appointData);
+let data ;
+  appointData ?  appointData.map( (obj,index) => {
+    
+   return( <tr>
+    <th scope='col'>#</th>
+    <th scope='col'>{obj.data.name}</th>
+    <th scope='col'>{obj.data.date}</th>
+    <th scope='col'>Time</th>
+    <th scope='col'>Doctor</th>
+    </tr>
+   )
+    console.log(obj.data.date
+      
+      
+      )}): console.log(`number`)
 
 
 
@@ -202,13 +217,13 @@ const Appointment = () => {
             <label htmlFor="name" className="formbold-form-label"> Address </label>
             <input
               type="text"
-              name="area"
-              id="area"
+              name="address"
+              id="address"
               placeholder="Enter Address"
               className="formbold-form-input"
               onChange={(e) => {
                 setFormData(
-                  { ...formData, address: e.target.value }
+                  { ...formData, Address: e.target.value }
                 )
               }}
             />
@@ -236,7 +251,7 @@ const Appointment = () => {
           </div>
           <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
         </form>
-        <button onClick={toggleShow} style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} className="formbold-btn">View Appointment</button>
+        <button onClick={toggleShow}  className="formbold-btn">View Appointment</button>
         <ToastContainer
           position="top-right"
           autoClose={3000}
@@ -255,11 +270,28 @@ const Appointment = () => {
         <MDBModalDialog size='lg'>
           <MDBModalContent>
             <MDBModalHeader>
-              <MDBModalTitle>Small modal</MDBModalTitle>
+              <MDBModalTitle>Appointment List</MDBModalTitle>
               <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
+            <MDBTable>
+      <MDBTableHead>
+        <tr>
+        <th scope='col'>#</th>
+        <th scope='col'>Status</th>
+        <th scope='col'>Date</th>
+        <th scope='col'>Time</th>
+        <th scope='col'>Doctor</th>
+        </tr>
+      </MDBTableHead>
+      <MDBTableBody>
 
+     
+
+
+
+      </MDBTableBody>
+    </MDBTable>
 
 
 
