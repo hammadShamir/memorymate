@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import { auth } from '../Firebase'
+import { auth } from '../Firebase';
+import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
   const handleSignIn = async (event) => {
     event.preventDefault();
 
     try {
       await auth.signInWithEmailAndPassword(email, password);
-      console.log('Logged in successfully');
+      const user = auth.currentUser;
+      const token = await user.getIdToken();
+      localStorage.setItem('accessToken', token);
+      console.log("loged in successfully");
+      navigate('/home')
     } catch (error) {
       console.error(error);
     }
