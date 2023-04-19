@@ -1,31 +1,56 @@
-import React, { useState, useEffect } from 'react'
-import HomeImg from '../images/home_img.webp'
+import React, { useState } from 'react';
 import { auth } from '../Firebase';
-import { Link } from 'react-router-dom';
-const Home = () => {
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slide from './Slide';
+import Slide_1 from '../images/slide-1.png'
+import Slide_2 from '../images/slide-2.jpeg'
+const SliderComponent = () => {
 
-    const [userInfo, setUserInfo] = useState(null)
-
+    // Fetching User Information
+    const [user, setUser] = useState(null);
     auth.onAuthStateChanged((user) => {
         if (user) {
-            setUserInfo(user);
+            setUser(user);
+        } else {
+            setUser(null);
         }
-    })
+    }
+    )
+    const settings = {
+        dots: true,
+        arrows: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+    };
 
     return (
-        <div className='row h-100'>
-            <div className="col">
-                <h1>Welcome {userInfo && userInfo.displayName}</h1>
-                <p>What would you like to explore today?</p>
-                <Link to="/appointment" className="btn btn-outline-success" type="submit">
-                    Appointment
-                </Link>
-            </div>
-            <div className="col">
-                <img className='home-img' src={HomeImg} alt="" />
-            </div>
-        </div>
-    )
-}
+        <Slider {...settings} >
+            <Slide
+                img={Slide_1}
+                heading={`Welcome ${user && user.displayName}`}
+                para={"What would you like to explore today?"}
+                button={"Appointment"} />
+            <Slide
+                img={Slide_1}
+                heading={`Remider for taking Medicine`}
+                para={"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque nostrum minima fugit tempora illum tempore, rem, libero reiciendis eius aperiam similique, id officiis odit obcaecati sapiente sit voluptatibus expedita! Quo necessitatibus eius quidem ad?"}
+                button={"Reminder"} />
+            <Slide
+                img={Slide_1}
+                heading={`Memory Album`}
+                para={"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque nostrum minima fugit tempora illum tempore, rem, libero reiciendis eius aperiam similique, id officiis odit obcaecati sapiente sit voluptatibus expedita! Quo necessitatibus eius quidem ad?"}
+                button={"Gallery"} />
+            <Slide
+                img={Slide_1}
+                heading={`Contacts`}
+                para={"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque nostrum minima fugit tempora illum tempore, rem, libero reiciendis eius aperiam similique, id officiis odit obcaecati sapiente sit voluptatibus expedita! Quo necessitatibus eius quidem ad?"}
+                button={"Contact"} />
+        </Slider>
+    );
+};
 
-export default Home
+export default SliderComponent;

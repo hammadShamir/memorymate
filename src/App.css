@@ -3,7 +3,7 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   background: #f5f5f5;
   /* background: linear-gradient(to bottom, #E6D0FF, #D1B0FF, #C294FF, #B278FF, #A05EFF); */
 }
@@ -14,7 +14,7 @@
 .logo {
   width: 50%;
 }
-.home-img {
-  max-width: 500px;
+.slide-img {
+  max-width: 400px;
   width: 100%;
 }
