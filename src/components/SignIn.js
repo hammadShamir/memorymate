@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function SignIn() {
 
-  const [loadImg ,setLoadImg] = useState(false);
+  const [loadImg, setLoadImg] = useState(false);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,10 +23,11 @@ function SignIn() {
       const user = auth.currentUser;
       const token = await user.getIdToken();
       localStorage.setItem('accessToken', token);
-      
+
       navigate('/home')
       setLoadImg(false);
     } catch (error) {
+      console.log(error.message);
       toast.error(`Email or Password is Incorrect`);
       setLoadImg(false);
     }
@@ -74,7 +75,7 @@ function SignIn() {
           <div className="p-3 text-center  mb-2">
             <button type="submit" className="formbold-btn btn_lg">Sign In</button>
           </div>
-          <img src={loading} style={{position:`absolute`,top:`50%`,left:`50%`,transform:`translate(-50%,-50%)`,display: loadImg ? `flex`:`none` }}/>
+          <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
         </form>
 
       </div>

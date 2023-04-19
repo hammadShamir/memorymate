@@ -11,9 +11,9 @@ const Header = ({ user }) => {
     return (
         <nav id='menubar' className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
-                <a className="navbar-brand" href="/home">
+                <Link className="navbar-brand" to="/home">
                     <img className='logo' src={logo} alt="" />
-                </a>
+                </Link>
                 <form className="d-flex">
                     {
                         token ? (

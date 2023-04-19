@@ -33,12 +33,15 @@ const SliderComponent = () => {
                 img={Slide_1}
                 heading={`Welcome ${user && user.displayName}`}
                 para={"What would you like to explore today?"}
-                button={"Appointment"} />
+                button={"Appointment"}
+                path={'/appointment'}
+            />
             <Slide
                 img={Slide_1}
                 heading={`Remider for taking Medicine`}
                 para={"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque nostrum minima fugit tempora illum tempore, rem, libero reiciendis eius aperiam similique, id officiis odit obcaecati sapiente sit voluptatibus expedita! Quo necessitatibus eius quidem ad?"}
-                button={"Reminder"} />
+                button={"Reminder"}
+            />
             <Slide
                 img={Slide_1}
                 heading={`Memory Album`}
