@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import db, { storage, auth } from '../Firebase'
 import $ from 'jquery'
 import Card from './Card'
-import img from '../images/register1.png'
 import loading from '../images/loading.gif'
 import '../cssfiles/gallery.css'
+import arrow from '../images/arrow.png'
 import {
     MDBBtn,
     MDBModal,
@@ -23,10 +23,23 @@ const Gallery = () => {
     const [isBtnDisabled, setisButtonDisabled] = useState(false);
 
     // 
+
+
+
+
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [galleryItems, setGalleryItems] = useState([]);
+
+
+    const initialize = () => {
+        setTitle('');
+        setDesc('');
+        setSelectedFile(null);
+        setGalleryItems([]);
+    }
+
 
     const handleFileInputChange = (e) => {
         setSelectedFile(e.target.files[0]);
@@ -60,6 +73,9 @@ const Gallery = () => {
                 })
                 .then(() => {
                     toast.success(`Image Added Successfully!`);
+                    //set values to null
+                    initialize();
+
                     setLoadImg(false);
                     setisButtonDisabled(false);
                     setOptSmModal(!optSmModal)
@@ -137,13 +153,13 @@ const Gallery = () => {
             <div className="col-12 m-auto ps-0 d-flex justify-content-between">
                 <h2 style={{ fontWeight: 'bold', fontSize: '30px', color: 'rgb(64 105 124)' }} className="  mb-4">Memories Gallery</h2>
 
-                <p style={{ display: 'block', color: `rgb(161 115 27)` }}>Click on + button on  Bottom Right side to add new images into gallery</p>
+                <p style={{ display: 'block', color: `rgb(161 115 27)` }}>Click on  +  to add new images into gallery</p>
                 <button title='Add New Image'
                     className='btn btn-primary buttonImage'
                     onClick={() => setOptSmModal(!optSmModal)}
                 >+</button>
             </div>
-            <div className="col-12">
+            <div className="col-12 ">
                 <div className="row gap-4 d-flex justify-content-center align-items-center">
                     {
                         galleryItems && galleryItems.length > 0 ? galleryItems.map((item) => {
@@ -151,7 +167,11 @@ const Gallery = () => {
                                 <Card img={item.data.downloadURL} title={item.data.title} note={item.data.desc} />
                             )
                         }) : (
-                            <p>no</p>
+                            <>
+                            <p className='text-center danger text-danger mt-5'>Add images to your gallery to display them here</p>
+                            <img style={{position:'absolute',maxWidth:'200px',right:'12%', bottom:`25%`}} src={arrow}/>
+                            
+                            </>
                         )
                     }
                 </div>
@@ -174,11 +194,12 @@ const Gallery = () => {
                                         type="text"
                                         name="title"
                                         id="title"
-                                        placeholder="Title here."
+                                        placeholder="Enter a title for your post"
                                         className="formbold-form-input"
                                         onChange={(e) => {
                                             setTitle(e.target.value)
                                         }}
+                                        value={title}
                                     />
                                 </div>
                                 <div className="formbold-mb-3">
@@ -189,11 +210,12 @@ const Gallery = () => {
                                         type="text"
                                         name="description"
                                         id="description"
-                                        placeholder="Description."
+                                        placeholder="Describe your post in a few words"
                                         className="formbold-form-input"
                                         onChange={(e) => {
                                             setDesc(e.target.value)
                                         }}
+                                        value={desc}
                                     />
                                 </div>
 
@@ -205,7 +227,7 @@ const Gallery = () => {
                                         accept="image/*"
                                     />
                                     <div className="drag-text">
-                                        <h3>Drag and drop a file or select add Image</h3>
+                                        <h3>Click to select an image</h3>
                                     </div>
                                 </div>
 
@@ -217,7 +239,7 @@ const Gallery = () => {
                                             alt="your image"
                                         />
                                         <div className="image-title-wrap">
-                                            <button type="button" onClick={removeImage} className="remove-image">
+                                            <button style={{width:'80%'}} type="button" onClick={removeImage} className="remove-image">
                                                 Remove <span className="image-title">Uploaded Image</span>
                                             </button>
                                         </div>

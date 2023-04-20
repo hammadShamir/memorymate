@@ -113,29 +113,43 @@ const Appointment = () => {
 
     let data;
     appointData ? data = appointData.map((obj, ind) => {
+// Create a date object for the future date
+const futureDate = new Date(obj.data.date);
+
+// Get the current date
+const currentDate = new Date();
+
+// Calculate the time difference in milliseconds between the future date and the current date
+const timeDiff = futureDate.getTime() - currentDate.getTime();
+
+// Calculate the number of days left by dividing the time difference by the number of milliseconds in a day
+const daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
         return (<tr key={obj.data.name}>
-            <th scope='row'>{ind}</th>
-            <td>{obj.data.name}</td>
-            <td>Status</td>
+            <th scope='row'>{ind+1}</th>
+            {/* <td>{obj.data.name}</td> */}
             <td>{obj.data.date}</td>
             <td>{obj.data.time}</td>
+            <td className='text-center'>{daysLeft}</td>
             <td>{obj.data.drName}</td>
             <td>{obj.data.Address}</td>
         </tr>)
 
     }) : console.log(`waiting...`)
 
-
-
-
+const minCount = () => {
+    const today = new Date();
+    today.setDate(today.getDate() + 1);
+    const formattedToday = today.toISOString().split("T")[0];
+    return formattedToday;
+}
 
     return (
 
         <div className="formbold-main-wrapper">
 
             <div className="formbold-form-wrapper">
-                <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className="  mb-4">Appointment Booking Form</h2>
+                <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className="  mb-4">Appointment Form</h2>
                 <hr />
                 <form style={{ position: `relative` }}>
                     <div className="formbold-mb-5">
@@ -160,7 +174,7 @@ const Appointment = () => {
                             type="text"
                             name="phone"
                             id="phone"
-                            placeholder="Enter your phone number"
+                            placeholder="(123) 456-7890"
                             className="formbold-form-input"
                             onChange={(e) => {
                                 setFormData(
@@ -176,8 +190,9 @@ const Appointment = () => {
                             type="number"
                             name="age"
                             id="age"
-                            placeholder="Enter your age"
+                            placeholder="e.g. 25"
                             className="formbold-form-input"
+                           
                             onChange={(e) => {
                                 setFormData(
                                     { ...formData, age: e.target.value }
@@ -195,12 +210,14 @@ const Appointment = () => {
                                     name="date"
                                     id="date"
                                     className="formbold-form-input"
+                                    placeholder='MM/DD/YYYY'
                                     onChange={(e) => {
                                         setFormData(
                                             { ...formData, date: e.target.value }
                                         )
                                     }}
                                     value={formData.date}
+                                    min={minCount()}
                                 />
                             </div>
                         </div>
@@ -212,6 +229,7 @@ const Appointment = () => {
                                     name="time"
                                     id="time"
                                     className="formbold-form-input"
+                                    placeholder='HH:MM AM/PM'
                                     onChange={(e) => {
                                         setFormData(
                                             { ...formData, time: e.target.value }
@@ -248,7 +266,7 @@ const Appointment = () => {
                             )
                         }}
                             value={formData.drName}
-                        >
+                        >   <option value="">-- Select Doctor --</option>
                             <option value="John_White">John White</option>
                             <option value="Tyler_Smith">Tyler Smith</option>
                             <option value="Lewis_Walker">Lewis Walker</option>
@@ -291,23 +309,20 @@ const Appointment = () => {
                                     <MDBTableHead>
                                         <tr>
                                             <th scope='col'>#</th>
-                                            <th scope='col'>Name</th>
-                                            <th scope='col'>Status</th>
-                                            <th scope='col'>Date</th>
+                                            {/* <th scope='col'>Name</th> */}
+                                            <th scope='col'>Appointment Date</th>
                                             <th scope='col'>Time</th>
+                                            <th scope='col'>Days Left</th>
                                             <th scope='col'>Doctor</th>
                                             <th scope='col'>Address</th>
                                         </tr>
                                     </MDBTableHead>
                                     <MDBTableBody>
 
-                                        {data ? data : `Loading...`}
+                                        {data ? data : `No Data Found...`}
 
                                     </MDBTableBody>
                                 </MDBTable>
-
-
-
 
 
                             </MDBModalBody>

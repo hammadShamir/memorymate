@@ -39,7 +39,12 @@ const SignUp = () => {
                 displayName: `${firstname.value} ${lastname.value}`,
                 username: username.value
             });
+            
+            //cleaningup after successfull login
+             email.value = password.value = firstname.value = lastname.value =username.value = ``; 
+
             toast.success(`User ${username.value} created successfully!`);
+
             setTimeout(() => {
                 navigate('/')
             }, 2000);
@@ -58,7 +63,7 @@ const SignUp = () => {
     return (
         <div className="formbold-main-wrapper">
             <div className="formbold-form-wrappe">
-                <img src={register} alt='register ' />
+                {/* <img src={register} alt='register ' /> */}
 
                 <form onSubmit={handleSignUp} style={{ position: `relative` }}>
                     <div className="formbold-form-title">
@@ -68,27 +73,27 @@ const SignUp = () => {
                     <div className="formbold-input-flex">
                         <div>
                             <label htmlFor="firstname" className="formbold-form-label"> First name </label>
-                            <input type="text" name="firstname" id="firstname" placeholder='First Name...' className="formbold-form-input" />
+                            <input type="text" name="firstname" id="firstname" placeholder='First Name' className="formbold-form-input" />
                         </div>
                         <div>
                             <label htmlFor="lastname" className="formbold-form-label"> Last name </label>
-                            <input type="text" name="lastname" id="lastname" className="formbold-form-input" placeholder='Last Name...' />
+                            <input type="text" name="lastname" id="lastname" className="formbold-form-input" placeholder='Last Name' />
                         </div>
                     </div>
                     <div className="formbold-mb-3">
                         <div>
                             <label htmlFor="email" className="formbold-form-label"> Email </label>
-                            <input type="email" name="email" id="email" className="formbold-form-input" placeholder='Email...' />
+                            <input type="email" name="email" id="email" className="formbold-form-input" placeholder='example@gmail.com' />
                         </div>
                     </div>
                     <div className="formbold-input-flex">
                         <div>
                             <label htmlFor="username" className="formbold-form-label">UserName</label>
-                            <input type="text" name="username" id="username firstname" placeholder='Username...' className="formbold-form-input" />
+                            <input type="text" name="username" id="username firstname" placeholder='Username' className="formbold-form-input" />
                         </div>
                         <div>
                             <label htmlFor="password" className="formbold-form-label"> Password </label>
-                            <input type="password" name="password" id="password lastname" placeholder='Password...' className="formbold-form-input" />
+                            <input type="password" name="password" id="password lastname" placeholder='••••••••••' className="formbold-form-input" />
                         </div>
                     </div>
                     <div className="formbold-checkbox-wrapper">

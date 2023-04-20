@@ -7,13 +7,15 @@ import loading from '../images/loading.gif'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const intialValue = ``;
+
 function SignIn() {
 
   const [isBtnDisabled, setisButtonDisabled] = useState(false);
   const [loadImg, setLoadImg] = useState(false);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(intialValue);
+  const [password, setPassword] = useState(intialValue);
 
   const navigate = useNavigate();
   const handleSignIn = async (event) => {
@@ -25,7 +27,11 @@ function SignIn() {
       await auth.signInWithEmailAndPassword(email, password);
       const user = auth.currentUser;
       const token = await user.getIdToken();
+      
       localStorage.setItem('accessToken', token);
+      
+      // cleanup form values
+      setEmail(intialValue); setPassword(intialValue);
       toast.success(`Logged in Successfully`);
       setLoadImg(false);
       setisButtonDisabled(false);
@@ -36,6 +42,7 @@ function SignIn() {
     } catch (error) {
       console.log(error.message);
       toast.error(`Email or Password is Incorrect`);
+      setPassword(intialValue);
       setLoadImg(false);
       setisButtonDisabled(false);
     }
@@ -47,8 +54,8 @@ function SignIn() {
 
   return (
     <div className="row h-100">
-      <div className="col-10 col-md-6 m-auto mt-5">
-        <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className=" mt-5 mb-4 text-center">Login</h2>
+      <div className="col-10 col-md-6 m-auto ">
+        <h2 style={{ fontWeight: 'bold', fontSize: '30px', color: `#07074d` }} className=" mt-5 mb-4 text-center">Login</h2>
         <form onSubmit={handleSignIn} style={{ position: `relative` }}>
           <div className="formbold-mb-3">
             <div>
@@ -58,7 +65,7 @@ function SignIn() {
                 name="email"
                 id="email"
                 className="formbold-form-input"
-                placeholder='Email...'
+                placeholder='example@gmail.com'
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
@@ -71,8 +78,8 @@ function SignIn() {
               <input
                 type="password"
                 name="password"
-                id="password lastname"
-                placeholder='Password...'
+                id="password"
+                placeholder='••••••••••'
                 className="formbold-form-input"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
