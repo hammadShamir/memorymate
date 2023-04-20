@@ -70,10 +70,11 @@ const Remainder = () => {
 
 
   return (
-    < div className="formbold-main-wrapper">
+    < div style={{border:'2px solid red'}} className="formbold-main-wrapper">
+      
       <div className="formbold-form-wrapper">
         <div className="formbold-form-title">
-          <button onClick={toggleShow} className="formbold-btn">Add Remainder</button>
+        <button onClick={toggleShow} className="formbold-btn">Add Remainder</button>
 
           <h3>Medication Remainder List</h3>
           <p>Keep your health on track with our reminder.<br /> Never forget a dose again with our app</p>
@@ -81,27 +82,87 @@ const Remainder = () => {
 
         <MDBTable>
           <MDBTableHead>
-            <tr>
-              <th scope='col'>#</th>
-              <th scope='col'>Name</th>
-              <th scope='col'>Status</th>
-              <th scope='col'>Date</th>
-              <th scope='col'>Time</th>
-              <th scope='col'>Doctor</th>
-              <th scope='col'>Address</th>
+            <tr> 				
+              {/* <th scope='col'>#</th> */}
+              <th scope='col'>Medication Name</th>
+              <th scope='col'>Dosage</th>
+              <th scope='col'>Frequency</th>
+              <th scope='col'>Start Date</th>
+              <th scope='col'>End Date</th>
             </tr>
           </MDBTableHead>
           <MDBTableBody>
 
-            <tr>
-              <td >#</td>
-              <td>Name</td>
-              <td>Status</td>
-              <td>Date</td>
-              <td>Time</td>
-              <td>Doctor</td>
-              <td>Address</td>
-            </tr>
+          <tr>
+    <td>Lipitor</td>
+    <td>10mg</td>
+    <td>Daily</td>
+    <td>2022-02-01</td>
+    <td>2022-03-01</td>
+  </tr>
+  <tr>
+    <td>Aspirin</td>
+    <td>81mg</td>
+    <td>Daily</td>
+    <td>2022-01-15</td>
+    <td>2022-05-15</td>
+  </tr>
+  <tr>
+    <td>Nexium</td>
+    <td>40mg</td>
+    <td>Daily</td>
+    <td>2022-02-01</td>
+    <td>2022-04-30</td>
+  </tr>
+  <tr>
+    <td>Zyrtec</td>
+    <td>10mg</td>
+    <td>Daily</td>
+    <td>2022-01-01</td>
+    <td>2022-06-01</td>
+  </tr>
+  <tr>
+    <td>Tylenol</td>
+    <td>500mg</td>
+    <td>As needed</td>
+    <td>2022-02-15</td>
+    <td>2022-03-15</td>
+  </tr>
+  <tr>
+    <td>Benadryl</td>
+    <td>25mg</td>
+    <td>As needed</td>
+    <td>2022-01-01</td>
+    <td>2022-06-01</td>
+  </tr>
+  <tr>
+    <td>Flonase</td>
+    <td>50mcg</td>
+    <td>Daily</td>
+    <td>2022-02-01</td>
+    <td>2022-03-31</td>
+  </tr>
+  <tr>
+    <td>Prozac</td>
+    <td>20mg</td>
+    <td>Daily</td>
+    <td>2022-01-01</td>
+    <td>2022-07-01</td>
+  </tr>
+  <tr>
+    <td>Metformin</td>
+    <td>1000mg</td>
+    <td>Daily</td>
+    <td>2022-02-01</td>
+    <td>2022-08-01</td>
+  </tr>
+  <tr>
+    <td>Amoxicillin</td>
+    <td>500mg</td>
+    <td>Twice a day</td>
+    <td>2022-01-15</td>
+    <td>2022-01-22</td>
+  </tr>
 
           </MDBTableBody>
         </MDBTable>
