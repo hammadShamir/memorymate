@@ -28,16 +28,18 @@ const Remainder = () => {
   const [optSmModal, setOptSmModal] = useState(false);
   const toggleShow = () => setOptSmModal(!optSmModal);
 
-  const [isBtnDisabled, setisButtonDisabled] = useState(false);
-  const [loadImg, setLoadImg] = useState(false);
-  const [formData, setFormData] = useState({
+  const initialValue = {
     medicationName: "",
     dosage: "",
     frequency: "",
     time: "",
     startDate: "",
     endDate: "",
-  });
+  }
+
+  const [isBtnDisabled, setisButtonDisabled] = useState(false);
+  const [loadImg, setLoadImg] = useState(false);
+  const [formData, setFormData] = useState(initialValue);
   const [remaind, setRemaind] = useState();
   const handleRemainder = async (e) => {
     e.preventDefault()
@@ -59,6 +61,8 @@ const Remainder = () => {
       .add(reminderData)
       .then(() => {
         toast.success(`Reminder Added Successfully!`);
+        setFormData(initialValue);
+        toggleShow()
         setLoadImg(false);
         setisButtonDisabled(false);
       })
@@ -67,6 +71,7 @@ const Remainder = () => {
         toast.error('Failed to set Reminder');
         setLoadImg(false);
         setisButtonDisabled(false);
+        toggleShow()
       })
   }
 
@@ -96,6 +101,14 @@ const Remainder = () => {
   useEffect(() => {
     fetchData()
   }, [optSmModal])
+
+
+  const minCount = () => {
+    const today = new Date();
+    today.setDate(today.getDate() + 2);
+    const formattedToday = today.toISOString().split("T")[0];
+    return formattedToday;
+}
   return (
     < div className="formbold-main-wrapper">
 
@@ -179,12 +192,13 @@ const Remainder = () => {
                         name="medicationName"
                         id="medicationName"
                         className="formbold-form-input"
-                        placeholder='Enter your medication name...'
+                        placeholder='Enter medication name'
                         onChange={(e) => {
                           setFormData(
                             { ...formData, medicationName: e.target.value }
                           )
                         }}
+                       
                       />
                     </div>
                   </div>
@@ -192,19 +206,24 @@ const Remainder = () => {
                   <div className="formbold-input-flex">
                     <div title='Specify the amount of medication you need to take each time.'>
                       <label htmlFor="Dosage" className="formbold-form-label">Dosage Amount </label>
-                      <input type="text" name="dosage" id="Dosage" placeholder='Dosage...' className="formbold-form-input" onChange={(e) => {
+                      <input type="text" name="dosage" id="Dosage" placeholder='Enter dosage' className="formbold-form-input" onChange={(e) => {
                         setFormData(
                           { ...formData, dosage: e.target.value }
                         )
-                      }} />
+                      }} 
+                      
+                      
+                      />
                     </div>
                     <div title='Specify how often you need to take medication e.g. daily, weekly, monthly, etc.'>
                       <label htmlFor="Frequency" className="formbold-form-label">Frequency </label>
-                      <input type="text" name="frequency" id="Frequency" className="formbold-form-input" placeholder='Frequency...' onChange={(e) => {
+                      <input type="text" name="frequency" id="Frequency" className="formbold-form-input" placeholder='Enter frequency' onChange={(e) => {
                         setFormData(
                           { ...formData, frequency: e.target.value }
                         )
-                      }} />
+                      }} 
+                      
+                      />
                     </div>
                   </div>
 
@@ -216,12 +235,13 @@ const Remainder = () => {
                         name="time"
                         id="time"
                         className="formbold-form-input"
-                        placeholder='Medication time...'
+                        placeholder='Enter time'
                         onChange={(e) => {
                           setFormData(
                             { ...formData, time: e.target.value }
                           )
                         }}
+                      
                       />
                     </div>
                   </div>
@@ -229,19 +249,28 @@ const Remainder = () => {
                   <div className="formbold-input-flex">
                     <div title='Enter the date you want to start taking the medication.'>
                       <label htmlFor="startDate" className="formbold-form-label">Start Date </label>
-                      <input type="date" name="startdate" id="startDate" placeholder='Start Date...' className="formbold-form-input" onChange={(e) => {
+                      <input type="date" name="startdate" id="startDate" placeholder='Enter start date' className="formbold-form-input" onChange={(e) => {
                         setFormData(
                           { ...formData, startDate: e.target.value }
                         )
-                      }} />
+                      }} 
+                      
+                      
+                      
+                      />
                     </div>
                     <div title='Enter the date you want to stop taking the medication.'>
                       <label htmlFor="endDate" className="formbold-form-label">End Date </label>
-                      <input type="date" name="enddate" id="endDate" className="formbold-form-input" placeholder='End Date...' onChange={(e) => {
+                      <input type="date" name="enddate" id="endDate" className="formbold-form-input" placeholder='Enter end date' onChange={(e) => {
                         setFormData(
                           { ...formData, endDate: e.target.value }
                         )
-                      }} />
+                      }} 
+                     
+                      
+                     
+                      
+                      />
                     </div>
                   </div>
 

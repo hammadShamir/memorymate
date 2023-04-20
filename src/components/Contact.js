@@ -13,13 +13,16 @@ import {
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import loading from '../images/loading.gif'
+
+const initialValue = {
+    firstName: "",
+    lastName: "",
+    number: "",
+}
+
 const Contact = () => {
     const [optSmModal, setOptSmModal] = useState(false);
-    const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
-        number: "",
-    });
+    const [formData, setFormData] = useState(initialValue);
     const [isBtnDisabled, setisButtonDisabled] = useState(false);
     const [loadImg, setLoadImg] = useState(false);
     const [contact, setContact] = useState();
@@ -40,6 +43,7 @@ const Contact = () => {
             })
             .then(() => {
                 toast.success(`Contact Added Successfully!`);
+                setFormData(initialValue);
                 setLoadImg(false);
                 setisButtonDisabled(false);
             })
