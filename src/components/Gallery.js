@@ -63,14 +63,16 @@ const Gallery = () => {
     return (
         <div className='row gap-2 py-4'>
             <div className="col-12 m-auto ps-0 d-flex justify-content-between">
-                <h3>Your Memories</h3>
-                <button
-                    className='btn btn-primary'
+            <h2 style={{ fontWeight: 'bold', fontSize: '30px',color:'rgb(64 105 124)' }} className="  mb-4">Memories Gallery</h2>
+            
+            <p style={{display:'block',color:`rgb(161 115 27)`}}>Click on + button on  Bottom Right side to add new images into gallery</p>
+                          <button title='Add New Image'
+                    className='btn btn-primary buttonImage'
                     onClick={() => setOptSmModal(!optSmModal)}
-                >Add Image</button>
+                >+</button>
             </div>
             <div className="col-12 m-auto">
-                <div className="row gy-3">
+                <div style={{gap:'5%', padding:'10%'}} className="row gy-3 d-flex justify-content-center align-items-center">
                     <Card img={img} note={"Some quick example text to build on the card title and make up the bulk of the card's content."} />
                     <Card img={img} note={"Some quick example text to build on the card title and make up the bulk of the card's content."} />
                     <Card img={img} note={"Some quick example text to build on the card title and make up the bulk of the card's content."} />

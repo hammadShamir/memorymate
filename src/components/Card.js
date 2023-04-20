@@ -1,16 +1,25 @@
 import React from 'react'
+import '../cssfiles/card.css'
 
 const Card = ({ img, note }) => {
     return (
-        <div className="col-12 col-md-3">
-            <div class="card">
-                <img class="card-img-top" src={img} alt="Card image cap" />
-                <div class="card-body">
-                    <p class="card-text">{note}</p>
-                    <span>Date</span>
-                </div>
-            </div>
-        </div>
+        <article class="card">
+  <img
+    class="card__background"
+    src={img} 
+    alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
+    width="1920"
+    height="2193"
+  />
+  <div class="card__content | flow">
+    <div class="card__content--container | flow">
+
+      <p class="card__description card__title">
+      {note}
+      </p>
+    </div>
+  </div>
+</article>
     )
 }
 
