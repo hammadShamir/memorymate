@@ -111,31 +111,9 @@ const Appointment = () => {
         fetchAppointments();
     }, [optSmModal]);
 
-    let data;
-    appointData ? data = appointData.map((obj, ind) => {
-// Create a date object for the future date
-const futureDate = new Date(obj.data.date);
-
 // Get the current date
 const currentDate = new Date();
 
-// Calculate the time difference in milliseconds between the future date and the current date
-const timeDiff = futureDate.getTime() - currentDate.getTime();
-
-// Calculate the number of days left by dividing the time difference by the number of milliseconds in a day
-const daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-        return (<tr key={obj.data.name}>
-            <th scope='row'>{ind+1}</th>
-            {/* <td>{obj.data.name}</td> */}
-            <td>{obj.data.date}</td>
-            <td>{obj.data.time}</td>
-            <td className='text-center'>{daysLeft}</td>
-            <td>{obj.data.drName}</td>
-            <td>{obj.data.Address}</td>
-        </tr>)
-
-    }) : console.log(`waiting...`)
 
 const minCount = () => {
     const today = new Date();
@@ -319,7 +297,52 @@ const minCount = () => {
                                     </MDBTableHead>
                                     <MDBTableBody>
 
-                                        {data ? data : `No Data Found...`}
+
+
+                                        {
+                                             appointData ? appointData.length > 0 ? appointData.map((obj, ind) => {
+                                               // Create a date object for the future date
+const futureDate = new Date(obj.data.date);
+
+
+
+// Calculate the time difference in milliseconds between the future date and the current date
+const timeDiff = futureDate.getTime() - currentDate.getTime();
+
+// Calculate the number of days left by dividing the time difference by the number of milliseconds in a day
+const daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+        return (<tr key={obj.data.name}>
+            <th scope='row'>{ind+1}</th>
+            {/* <td>{obj.data.name}</td> */}
+            <td>{obj.data.date}</td>
+            <td>{obj.data.time}</td>
+            <td className='text-center'>{daysLeft}</td>
+            <td>{obj.data.drName}</td>
+            <td>{obj.data.Address}</td>
+        </tr>)
+
+    
+                                            }) : (
+                                                <tr>
+                                                    <td colspan="6" className='text-center'>
+                                                        <p className=''>No Appointments Available</p>
+                                                    </td>
+                                                </tr>
+                                            ) : (
+                                                <tr>
+                                                    <td colspan="6" className='text-center'>
+                                                        <p className=''>Loading</p>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        }
+
+
+
+
+
+                                     
 
                                     </MDBTableBody>
                                 </MDBTable>
