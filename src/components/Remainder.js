@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import db, { auth } from '../Firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -38,6 +38,7 @@ const Remainder = () => {
     startDate: "",
     endDate: "",
   });
+  const [remaind, setRemaind] = useState();
   const handleRemainder = async (e) => {
     e.preventDefault()
     setisButtonDisabled(true);
@@ -48,7 +49,8 @@ const Remainder = () => {
       frequency: formData.frequency,
       time: formData.time,
       startDate: formData.startDate,
-      endDate: formData.endDate
+      endDate: formData.endDate,
+      currentTime: new Date().toLocaleString()
     }
     //Storing Reminder 
     await db.collection("users")
@@ -68,7 +70,32 @@ const Remainder = () => {
       })
   }
 
+  const fetchData = async () => {
+    try {
+      const querySnapshot = await db
+        .collection("users")
+        .doc(auth.currentUser && auth.currentUser.uid)
+        .collection("reminder")
+        .orderBy("currentTime", "desc")
+        .get()
+      const remainders = [];
+      querySnapshot.forEach((doc) => {
+        const remainderData = doc.exists ? doc.data() : null;
+        remainders.push({
+          id: doc.id,
+          data: remainderData,
+        });
+      });
+      setRemaind(remainders);
+    } catch (error) {
+      console.error("Error fetching Contacts: ", error);
+    }
 
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [optSmModal])
   return (
     < div className="formbold-main-wrapper">
 
@@ -83,6 +110,7 @@ const Remainder = () => {
         <MDBTable>
           <MDBTableHead>
             <tr>
+              <th scope='col'>#</th>
               <th scope='col'>Medication Name</th>
               <th scope='col'>Dosage</th>
               <th scope='col'>Frequency</th>
@@ -92,76 +120,34 @@ const Remainder = () => {
           </MDBTableHead>
           <MDBTableBody>
 
-            <tr>
-              <td>Lipitor</td>
-              <td>10mg</td>
-              <td>Daily</td>
-              <td>2022-02-01</td>
-              <td>2022-03-01</td>
-            </tr>
-            <tr>
-              <td>Aspirin</td>
-              <td>81mg</td>
-              <td>Daily</td>
-              <td>2022-01-15</td>
-              <td>2022-05-15</td>
-            </tr>
-            <tr>
-              <td>Nexium</td>
-              <td>40mg</td>
-              <td>Daily</td>
-              <td>2022-02-01</td>
-              <td>2022-04-30</td>
-            </tr>
-            <tr>
-              <td>Zyrtec</td>
-              <td>10mg</td>
-              <td>Daily</td>
-              <td>2022-01-01</td>
-              <td>2022-06-01</td>
-            </tr>
-            <tr>
-              <td>Tylenol</td>
-              <td>500mg</td>
-              <td>As needed</td>
-              <td>2022-02-15</td>
-              <td>2022-03-15</td>
-            </tr>
-            <tr>
-              <td>Benadryl</td>
-              <td>25mg</td>
-              <td>As needed</td>
-              <td>2022-01-01</td>
-              <td>2022-06-01</td>
-            </tr>
-            <tr>
-              <td>Flonase</td>
-              <td>50mcg</td>
-              <td>Daily</td>
-              <td>2022-02-01</td>
-              <td>2022-03-31</td>
-            </tr>
-            <tr>
-              <td>Prozac</td>
-              <td>20mg</td>
-              <td>Daily</td>
-              <td>2022-01-01</td>
-              <td>2022-07-01</td>
-            </tr>
-            <tr>
-              <td>Metformin</td>
-              <td>1000mg</td>
-              <td>Daily</td>
-              <td>2022-02-01</td>
-              <td>2022-08-01</td>
-            </tr>
-            <tr>
-              <td>Amoxicillin</td>
-              <td>500mg</td>
-              <td>Twice a day</td>
-              <td>2022-01-15</td>
-              <td>2022-01-22</td>
-            </tr>
+            {
+              remaind ?
+                remaind.length > 0 ?
+                  remaind.map((item, ind) => {
+                    return (
+                      <tr key={ind}>
+                        <th scope='row'>{ind + 1}</th>
+                        <td>{item.data.medicationName}</td>
+                        <td>{item.data.dosage}</td>
+                        <td>{item.data.frequency}</td>
+                        <td>{item.data.startDate}</td>
+                        <td>{item.data.endDate}</td>
+                      </tr>
+                    )
+                  }) : (
+                    <tr>
+                      <td colspan="5" className='text-center'>
+                        <p className='text-secondary'>No Remainder Available</p>
+                      </td>
+                    </tr>
+                  ) : (
+                  <tr>
+                    <td colspan="5" className='text-center'>
+                      <p className='text-secondary'>Loading</p>
+                    </td>
+                  </tr>
+                )
+            }
 
           </MDBTableBody>
         </MDBTable>
@@ -288,7 +274,7 @@ const Remainder = () => {
         />
 
       </div>
-    </div>
+    </div >
   )
 }
 

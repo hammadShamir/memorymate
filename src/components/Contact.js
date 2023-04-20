@@ -109,13 +109,13 @@ const Contact = () => {
                                 )
                             }) : (
                                 <tr>
-                                    <td>
+                                    <td colspan="5" className='text-center'>
                                         <p className=''>No Contact Available</p>
                                     </td>
                                 </tr>
                             ) : (
                                 <tr>
-                                    <td>
+                                    <td colspan="5" className='text-center'>
                                         <p className=''>Loading</p>
                                     </td>
                                 </tr>
