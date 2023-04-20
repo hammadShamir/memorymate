@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import db, { storage, auth } from '../Firebase'
 import $ from 'jquery'
 import Card from './Card'
 import img from '../images/register1.png'
+import loading from '../images/loading.gif'
 import '../cssfiles/gallery.css'
 import {
     MDBBtn,
@@ -12,24 +14,67 @@ import {
     MDBModalTitle,
     MDBModalBody
 } from 'mdb-react-ui-kit';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Gallery = () => {
     const [optSmModal, setOptSmModal] = useState(false);
-
+    const [loadImg, setLoadImg] = useState(false);
+    const [isBtnDisabled, setisButtonDisabled] = useState(false);
 
     // 
+    const [title, setTitle] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
+    const [galleryItems, setGalleryItems] = useState([]);
 
-    function handleImageUpload(e) {
-        e.preventDefault();
-
-        // Handle image upload logic here
-    }
-
-    function handleFileInputChange(e) {
+    const handleFileInputChange = (e) => {
         setSelectedFile(e.target.files[0]);
         readURL(e.target);
     }
+    const handleImageUpload = async (e) => {
+        e.preventDefault();
+        setLoadImg(true);
+        setisButtonDisabled(true);
+        // Handle image upload logic here
+        if (!selectedFile) {
+            toast.warning('Please select a file to upload.');
+            setLoadImg(false);
+            setisButtonDisabled(false);
+            return;
+        }
+        try {
+            const storageRef = storage.ref().child("images/" + selectedFile.name);
+            const snapShot = await storageRef.put(selectedFile);
+            const downloadURL = await snapShot.ref.getDownloadURL();
 
+            // Save the download URL and text input to a Firestore document
+            await db.collection("users")
+                .doc(auth.currentUser.uid)
+                .collection("gallery")
+                .add({
+                    downloadURL,
+                    title: title,
+                    time: new Date().toLocaleString()
+                })
+                .then(() => {
+                    toast.success(`Image Added Successfully!`);
+                    setLoadImg(false);
+                    setisButtonDisabled(false);
+                    setOptSmModal(!optSmModal)
+                })
+                .catch((error) => {
+                    toast.error(`Error adding document:`);
+                    setLoadImg(false);
+                    setisButtonDisabled(false);
+                    console.error(error);
+                })
+
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            toast.error('Error uploading file. Please try again later.');
+            setLoadImg(false);
+        }
+    }
     function removeImage() {
         setSelectedFile(null);
         $('.file-upload-input').val('');  /// working
@@ -53,8 +98,33 @@ const Gallery = () => {
             removeImage();
         }
     }
+    // Fetching Gallery Data
+    const fetchGallery = async () => {
+        try {
+            const querySnapshot = await db
+                .collection("users")
+                .doc(auth.currentUser && auth.currentUser.uid)
+                .collection("gallery")
+                .orderBy("time", "desc")
+                .get()
+            const items = [];
+            querySnapshot.forEach((doc) => {
+                const galleryData = doc.exists ? doc.data() : null;
+                items.push({
+                    id: doc.id,
+                    data: galleryData,
+                });
+            });
+            setGalleryItems(items);
+        } catch (error) {
+            console.error("Error fetching Contacts: ", error);
+        }
 
+    }
 
+    useEffect(() => {
+        fetchGallery();
+    }, [optSmModal]);
 
 
 
@@ -63,22 +133,25 @@ const Gallery = () => {
     return (
         <div className='row gap-2 py-4'>
             <div className="col-12 m-auto ps-0 d-flex justify-content-between">
-            <h2 style={{ fontWeight: 'bold', fontSize: '30px',color:'rgb(64 105 124)' }} className="  mb-4">Memories Gallery</h2>
-            
-            <p style={{display:'block',color:`rgb(161 115 27)`}}>Click on + button on  Bottom Right side to add new images into gallery</p>
-                          <button title='Add New Image'
+                <h2 style={{ fontWeight: 'bold', fontSize: '30px', color: 'rgb(64 105 124)' }} className="  mb-4">Memories Gallery</h2>
+
+                <p style={{ display: 'block', color: `rgb(161 115 27)` }}>Click on + button on  Bottom Right side to add new images into gallery</p>
+                <button title='Add New Image'
                     className='btn btn-primary buttonImage'
                     onClick={() => setOptSmModal(!optSmModal)}
                 >+</button>
             </div>
-            <div className="col-12 m-auto">
-                <div style={{gap:'5%', padding:'10%'}} className="row gy-3 d-flex justify-content-center align-items-center">
-                    <Card img={img} note={"Some quick example text to build on the card title and make up the bulk of the card's content."} />
-                    <Card img={img} note={"Some quick example text to build on the card title and make up the bulk of the card's content."} />
-                    <Card img={img} note={"Some quick example text to build on the card title and make up the bulk of the card's content."} />
-                    <Card img={img} note={"Some quick example text to build on the card title and make up the bulk of the card's content."} />
-                    <Card img={img} note={"Some quick example text to build on the card title and make up the bulk of the card's content."} />
-                    <Card img={img} note={"Some quick example text to build on the card title and make up the bulk of the card's content."} />
+            <div className="col-12">
+                <div className="row gap-4 d-flex justify-content-center align-items-center">
+                    {
+                        galleryItems && galleryItems.length > 0 ? galleryItems.map((item) => {
+                            return (
+                                <Card img={item.data.downloadURL} title={item.data.title} note={"Descrripttion"} />
+                            )
+                        }) : (
+                            <p>no</p>
+                        )
+                    }
                 </div>
             </div>
             <MDBModal show={optSmModal} tabIndex='-1' setShow={setOptSmModal}>
@@ -101,6 +174,9 @@ const Gallery = () => {
                                         id="title"
                                         placeholder="Title here."
                                         className="formbold-form-input"
+                                        onChange={(e) => {
+                                            setTitle(e.target.value)
+                                        }}
                                     />
                                 </div>
 
@@ -132,9 +208,13 @@ const Gallery = () => {
                                 )}
 
                                 <div className=" text-center mb-2">
-                                    <button className="formbold-btn btn_lg" type="submit">
-                                        Upload
-                                    </button>
+                                    <div className=" text-center mb-2">
+                                        <button style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} className="formbold-btn btn_lg" type="submit">
+                                            Upload
+                                        </button>
+
+                                    </div>
+                                    <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
                                 </div>
                             </form>
 
@@ -145,6 +225,18 @@ const Gallery = () => {
                     </MDBModalContent>
                 </MDBModalDialog>
             </MDBModal>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </div >
     )
 }
