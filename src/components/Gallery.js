@@ -32,7 +32,7 @@ const Gallery = () => {
 
     function removeImage() {
         setSelectedFile(null);
-        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+        $('.file-upload-input').val('');  /// working
         $('.file-upload-content').hide();
         $('.image-upload-wrap').show();
     }

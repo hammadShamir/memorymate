@@ -70,11 +70,11 @@ const Remainder = () => {
 
 
   return (
-    < div style={{border:'2px solid red'}} className="formbold-main-wrapper">
+    < div  className="formbold-main-wrapper">
       
-      <div className="formbold-form-wrapper">
-        <div className="formbold-form-title">
-        <button onClick={toggleShow} className="formbold-btn">Add Remainder</button>
+      <div  style={{maxWidth:'700px',position:'relative'}} className="formbold-form-wrapper">
+        <div  className="formbold-form-title">
+        <button onClick={toggleShow} className="formbold-btn button_relative">+</button>
 
           <h3>Medication Remainder List</h3>
           <p>Keep your health on track with our reminder.<br /> Never forget a dose again with our app</p>
@@ -83,7 +83,6 @@ const Remainder = () => {
         <MDBTable>
           <MDBTableHead>
             <tr> 				
-              {/* <th scope='col'>#</th> */}
               <th scope='col'>Medication Name</th>
               <th scope='col'>Dosage</th>
               <th scope='col'>Frequency</th>
@@ -165,15 +164,12 @@ const Remainder = () => {
   </tr>
 
           </MDBTableBody>
-        </MDBTable>
+        </MDBTable> 
 
 
 
-
-
-
-
-
+    
+ 
 
 
 
