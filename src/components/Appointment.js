@@ -109,7 +109,7 @@ const Appointment = () => {
 
     useEffect(() => {
         fetchAppointments();
-    });
+    }, [optSmModal]);
 
     let data;
     appointData ? data = appointData.map((obj, ind) => {
