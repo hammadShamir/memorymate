@@ -50,12 +50,16 @@ const SliderComponent = () => {
                 img={gallery}
                 heading={`Memory Album`}
                 para={"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque nostrum minima fugit tempora illum tempore, rem, libero reiciendis eius aperiam similique, id officiis odit obcaecati sapiente sit voluptatibus expedita! Quo necessitatibus eius quidem ad?"}
-                button={"Gallery"} />
+                button={"Gallery"}
+                path={'/gallery'}
+            />
             <Slide
                 img={contactus}
                 heading={`Contacts`}
                 para={"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque nostrum minima fugit tempora illum tempore, rem, libero reiciendis eius aperiam similique, id officiis odit obcaecati sapiente sit voluptatibus expedita! Quo necessitatibus eius quidem ad?"}
-                button={"Contact"} />
+                button={"Contact"}
+                path={'/contact '}
+            />
         </Slider>
     );
 };

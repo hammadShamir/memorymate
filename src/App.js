@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -13,11 +14,12 @@ import Dashboard from "./components/Dashboard";
 import ProtectedRoute from "./components/Protected";
 import Remainder from "./components/Remainder";
 import Modal from "./components/Modal";
+import Contact from "./components/Contact";
+import Gallery from "./components/Gallery";
 function App() {
   const [user, setUser] = useState();
   const [key, setkey] = useState();
 
-  //TODO Run UseEffect when url Change
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -40,6 +42,8 @@ function App() {
               <Route exact path="/appointment" element={<Appointment />} />
               <Route exact path="/remainder" element={<Remainder />} />
               <Route exact path="/alert" element={<Modal />} />
+              <Route exact path="/contact" element={<Contact />} />
+              <Route exact path="/gallery" element={<Gallery />} />
             </Route>
           </Routes>
         </div>
