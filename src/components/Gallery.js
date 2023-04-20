@@ -24,6 +24,7 @@ const Gallery = () => {
 
     // 
     const [title, setTitle] = useState('');
+    const [desc, setDesc] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [galleryItems, setGalleryItems] = useState([]);
 
@@ -54,6 +55,7 @@ const Gallery = () => {
                 .add({
                     downloadURL,
                     title: title,
+                    desc: desc,
                     time: new Date().toLocaleString()
                 })
                 .then(() => {
@@ -103,7 +105,7 @@ const Gallery = () => {
         try {
             const querySnapshot = await db
                 .collection("users")
-                .doc(auth.currentUser && auth.currentUser.uid)
+                .doc(auth.currentUser.uid)
                 .collection("gallery")
                 .orderBy("time", "desc")
                 .get()
@@ -146,7 +148,7 @@ const Gallery = () => {
                     {
                         galleryItems && galleryItems.length > 0 ? galleryItems.map((item) => {
                             return (
-                                <Card img={item.data.downloadURL} title={item.data.title} note={"Descrripttion"} />
+                                <Card img={item.data.downloadURL} title={item.data.title} note={item.data.desc} />
                             )
                         }) : (
                             <p>no</p>
@@ -176,6 +178,21 @@ const Gallery = () => {
                                         className="formbold-form-input"
                                         onChange={(e) => {
                                             setTitle(e.target.value)
+                                        }}
+                                    />
+                                </div>
+                                <div className="formbold-mb-3">
+                                    <label htmlFor="description" className="formbold-form-label">
+                                        Description
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="description"
+                                        id="description"
+                                        placeholder="Description."
+                                        className="formbold-form-input"
+                                        onChange={(e) => {
+                                            setDesc(e.target.value)
                                         }}
                                     />
                                 </div>
