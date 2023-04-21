@@ -68,7 +68,7 @@ const Header = ({ user }) => {
                 type="submit"
                 style={styles}
               >
-                Sign UP
+                Sign up
               </Link>
             ) : (
               <Link

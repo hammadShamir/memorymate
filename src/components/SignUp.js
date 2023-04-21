@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef  } from 'react'
 import { auth } from '../Firebase'
 import { useNavigate } from 'react-router-dom'
 
@@ -10,7 +10,58 @@ import loading from '../images/loading.gif'
 // css
 import '../cssfiles/signup.css'
 
+
+
+
 const SignUp = () => {
+
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+    useEffect(() => {
+       
+       
+       
+        const handleResize = () => {
+         setIsSmallScreen(window.innerWidth < 500);
+        }
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    },[window.innerWidth]);
+
+    const divRefs = [useRef(null), useRef(null)];
+
+
+    useEffect(() => {
+        if (isSmallScreen) {
+          divRefs.forEach((ref) => {
+            if (ref.current) {
+               
+              ref.current.classList.remove(`formbold-input-flex`);
+              ref.current.classList.add('formbold-mb-3') ;
+            }
+          });
+        } else {
+          divRefs.forEach((ref) => {
+            if (ref.current) {
+                ref.current.classList.remove('formbold-mb-3') ;
+                ref.current.classList.add(`formbold-input-flex`);
+            }
+          });
+        }
+      }, [isSmallScreen]);
+
+
+
+
+
+
+
+
+
 
     const [isBtnDisabled, setisButtonDisabled] = useState(false);
     const [loadImg, setLoadImg] = useState(false);
@@ -70,7 +121,9 @@ const SignUp = () => {
                         <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className=" mt-2 mb-4">Welcome to MemoryMate!</h2>
                         <p>Please fill in the following information to create your account.</p>
                     </div>
-                    <div className="formbold-input-flex">
+
+
+                    <div ref={divRefs[0]} className="formbold-input-flex ">
                         <div>
                             <label htmlFor="firstname" className="formbold-form-label"> First name </label>
                             <input type="text" name="firstname" id="firstname" placeholder='First Name' className="formbold-form-input" />
@@ -80,13 +133,16 @@ const SignUp = () => {
                             <input type="text" name="lastname" id="lastname" className="formbold-form-input" placeholder='Last Name' />
                         </div>
                     </div>
+
+
                     <div className="formbold-mb-3">
                         <div>
                             <label htmlFor="email" className="formbold-form-label"> Email </label>
                             <input type="email" name="email" id="email" className="formbold-form-input" placeholder='example@gmail.com' />
                         </div>
                     </div>
-                    <div className="formbold-input-flex">
+
+                    <div ref={divRefs[1]} className="formbold-input-flex">
                         <div>
                             <label htmlFor="username" className="formbold-form-label">UserName</label>
                             <input type="text" name="username" id="username firstname" placeholder='Username' className="formbold-form-input" />
@@ -96,6 +152,8 @@ const SignUp = () => {
                             <input type="password" name="password" id="password lastname" placeholder='••••••••••' className="formbold-form-input" />
                         </div>
                     </div>
+
+
                     <div className="formbold-checkbox-wrapper">
                         <label htmlFor="supportCheckbox" className="formbold-checkbox-label">By clicking on the "Register Now" button, you agree to our terms and conditions.</label>
                     </div>
