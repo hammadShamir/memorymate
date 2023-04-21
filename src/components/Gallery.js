@@ -173,11 +173,12 @@ const Gallery = () => {
                 >+</button>
             </div>
             <div className="col-12 ">
-                <div className="row gap-4 d-flex justify-content-center align-items-center">
+                <div className="row gy-3">
                     {
                         galleryItems && galleryItems.length > 0 ? galleryItems.map((item) => {
                             return (
-                                <Card img={item.data.downloadURL} title={item.data.title} note={item.data.desc} />
+                                <Card img={item.data.downloadURL} title={item.data.title} note={item.data.desc} date={item.data.time}
+                                />
                             )
                         }) : (
                             <>

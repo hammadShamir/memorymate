@@ -1,26 +1,16 @@
 import React from 'react'
-import '../cssfiles/card.css'
 
-const Card = ({ img, note, title }) => {
+const Card = ({ img, title, note, date }) => {
   return (
-    <div className="col-12 col-md-4 col-lg-3">
-      <article class="card">
-        <img
-          class="card__background"
-          src={img}
-          alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
-          width="1920"
-          height="2193"
-        />
-        <div class="card__content | flow">
-          <div class="card__content--container | flow">
-            <h2 className='card__title'>{title}</h2>
-            <p class="card__description">
-              {note}
-            </p>
-          </div>
+    <div className="col-12 col-md-3">
+      <div className="card shadow" >
+        <img className="card-img-top shadow" src={img} alt="Card image cap" style={{ aspectRatio: "9/6" }} />
+        <div className="card-body">
+          <h5 class="card-title" style={{ fontFamily: "Montserrat, sans- serif" }}>{title}</h5>
+          <p className="card-text" style={{ fontFamily: "Montserrat, sans- serif" }}>{note}</p>
+          <span style={{ fontFamily: "Montserrat, sans- serif" }}>{date}</span>
         </div>
-      </article>
+      </div>
     </div>
   )
 }
