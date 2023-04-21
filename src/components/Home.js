@@ -49,9 +49,9 @@ const SliderComponent = () => {
             />
             <Slide
                 img={medicationRemainder}
-                heading={`Remider for taking Medication`}
-                para={"Introducing our medication reminder feature, designed to help dementia patients keep track of their medication schedules. Our user-friendly interface makes it easy to enter all your medications' names, doses, and times into the system. Once entered, you'll be able to see a comprehensive list of all the medications you need to take, with corresponding times and doses. You'll receive timely reminders to ensure you never miss a dose or take too much medication."}
-                button={"Reminder"}
+                heading={`Remaider for taking Medication`}
+                para={"Introducing our medication remainder feature, designed to help dementia patients keep track of their medication schedules. Our user-friendly interface makes it easy to enter all your medications' names, doses, and times into the system. Once entered, you'll be able to see a comprehensive list of all the medications you need to take, with corresponding times and doses. You'll receive timely reminders to ensure you never miss a dose or take too much medication."}
+                button={"Remainder"}
                 path={'/remainder'}
             />
             <Slide

@@ -49,6 +49,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    text-align: center;
   }
 
   .slider-box1 {
@@ -57,12 +58,14 @@
     align-self: center;
     order: 2;
     margin-left: 10%;
+    text-align: center;
   }
 
   #slider-head {
     width: 85% !important;
     margin-top: 10px;
     margin-bottom: 5px;
+    text-align: center;
   }
 
   #slider-desc {
@@ -72,6 +75,9 @@
 
   .small-button {
     margin-bottom: 10px;
+    /* text-align: center; */
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -87,4 +93,12 @@
   .logo {
     width: 128px;
   }
+
+  .slider-box1 {
+    order: 1;
+  }
+
+  .slider-box-2{
+      order: 2;
+  } 
 }

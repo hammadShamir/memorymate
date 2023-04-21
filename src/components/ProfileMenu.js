@@ -36,7 +36,7 @@ const ProfileDropdown = () => {
                 id="profile-dropdown"
                 onClick={handleToggle}
             >
-                {user ? user.displayName : 'Guest'}
+                {user ? user.displayName.slice(0,6) : 'Guest'}
             </button>
             <div style={{ position: 'absolute', right: 0 }} className={`dropdown-menu ${isOpen ? 'show' : ''}`} aria-labelledby="profile-dropdown" >
                 <button className="dropdown-item " onClick={handleSignOutClick} >Sign Out</button>

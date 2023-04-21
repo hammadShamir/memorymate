@@ -105,7 +105,8 @@ const Contact = () => {
     return (
         <div className='row gap-3'>
             <div className="col-10 col-sm-11 col-md-8 m-auto ps-0 d-flex justify-content-between align-items-center">
-                <h3>Your Contacts</h3>
+            <h2 style={{ fontWeight: 'bold', fontSize: '2rem', color: 'rgb(64 105 124)' }} className={" px-3 col-9 col-md-9 col-sm-8 col-lg-6" }>Your Contacts</h2>
+
                 <button  
                     className='formbold-btn btn_contact'
                     onClick={() => setOptSmModal(!optSmModal)}
@@ -149,16 +150,6 @@ const Contact = () => {
                         }
 
                     </tbody>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -244,7 +235,7 @@ const Contact = () => {
                                 <button style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} className="formbold-btn">
                                     Add Contact
                                 </button>
-                                <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
+                                <img  src={loading}  style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} alt=''/>
                             </form>
 
 

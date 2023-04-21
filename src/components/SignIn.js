@@ -11,6 +11,45 @@ const intialValue = ``;
 
 function SignIn() {
 
+
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+        const handleResize = () => {      
+          setIsSmallScreen((prevIsSmallScreen) => window.innerWidth < 500);
+          console.log(window.innerWidth )
+          if(window.innerWidth < 600){
+              setIsSmallScreen(true);
+          }else {
+              setIsSmallScreen(false);
+          }
+      }
+
+  window.addEventListener('resize', handleResize);
+  handleResize();
+  return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  },[setIsSmallScreen]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const [isBtnDisabled, setisButtonDisabled] = useState(false);
   const [loadImg, setLoadImg] = useState(false);
 
@@ -55,8 +94,8 @@ function SignIn() {
   return (
     <div className="row h-100">
       <div className="col-10 col-md-6 m-auto ">
-        <h2 style={{  color: `#07074d` }} className="fw-bold mt-5 fs-1 ml-auto">Welcome to Memory Mate! <br/> <span  className='fw-light fs-4 text-right'>for Dementia patients</span></h2>
-        <p className=' fw-light mt-3 mb-4'>Please enter your credentials to access your account.</p>
+        <h2 style={{  color: `#07074d` }} className={isSmallScreen ? `fw-bold mt-5 fs-1 text-center` :`fw-bold mt-5 fs-1 ml-auto` }>Welcome to Memory Mate! <br/> <span  className='fw-light fs-4 text-right'>for Dementia patients</span></h2>
+        <p className={isSmallScreen ? `fw-light mt-3 mb-4 text-center` :`fw-light mt-3 mb-4` } >Please enter your credentials to access your account.</p>
         {/* <p className='mt-3 fw-lighter fs-6'>Please enter your credentials to access your account.</p> */}
         <form onSubmit={handleSignIn} style={{ position: `relative` }}>
           <div className="formbold-mb-3">

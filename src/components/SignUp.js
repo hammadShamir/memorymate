@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef  } from 'react'
 import { auth } from '../Firebase'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,7 +22,13 @@ const SignUp = () => {
        
        
         const handleResize = () => {
-         setIsSmallScreen(window.innerWidth < 500);
+            
+            console.log(isSmallScreen)
+            if(window.innerWidth < 600){
+                setIsSmallScreen(true);
+            }else {
+                setIsSmallScreen(false);
+            }
         }
 
     window.addEventListener('resize', handleResize);
@@ -30,7 +36,7 @@ const SignUp = () => {
     return () => {
         window.removeEventListener('resize', handleResize);
       };
-    },[window.innerWidth]);
+    },[setIsSmallScreen]);
 
     const divRefs = [useRef(null), useRef(null)];
 
@@ -117,9 +123,9 @@ const SignUp = () => {
                 
 
                 <form onSubmit={handleSignUp} style={{ position: `relative` }}>
-                    <div className="formbold-form-title">
-                        <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className=" mt-2 mb-4">Welcome to MemoryMate!</h2>
-                        <p>Please fill in the following information to create your account.</p>
+                    <div className={isSmallScreen ? `formbold-form-title text-center ` : `formbold-form-title`}>
+                        <h2  className="fs-1 fw-bold mt-2 mb-4">Welcome to MemoryMate!</h2>
+                        <p  >Please fill in the following information to create your account.</p>
                     </div>
 
 
@@ -160,7 +166,7 @@ const SignUp = () => {
                     <button style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} className="formbold-btn btn_lg" disabled={isBtnDisabled}>Register Now</button>
                     <img src={loading} style={{maxWidth:'120px', position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
                     <br/>
-                 <p className='mt-3 mb-3 fw-light'>Already have an account? Click on the "Log In" button to access your account.</p>
+                 <p className='mt-3 mb-3 fw-light'>Already have an account? Click on the "<Link  className='fw-bold text-success' to='/signin'>Sign In</Link>" button to access your account.</p>
                 {/* <p className='fw-light mt-5'>If you have any questions or concerns, please contact us at - <span style={{fontStyle:'italic', color:`rgb(250,168,11)`,fontWeight:'bold'}}> memorymate@gmail.com </span> </p> */}
                    
             

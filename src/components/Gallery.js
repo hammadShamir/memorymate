@@ -19,6 +19,45 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Gallery = () => {
 
+
+
+
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+    useEffect(() => {
+          const handleResize = () => {      
+          
+         
+            if(window.innerWidth < 600){
+                setIsSmallScreen(true);
+            }else {
+                setIsSmallScreen(false);
+            }
+        }
+  
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    },[isSmallScreen]);
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     const [optSmModal, setOptSmModal] = useState(false);
     const [loadImg, setLoadImg] = useState(false);
     const [isBtnDisabled, setisButtonDisabled] = useState(false);
@@ -163,10 +202,10 @@ const Gallery = () => {
 
     return (
         <div className='row gap-2 py-4'>
-            <div className="col-12 m-auto ps-0 d-flex justify-content-between">
-                <h2 style={{ fontWeight: 'bold', fontSize: '2rem', color: 'rgb(64 105 124)' }} className="px-3  mb-4">Memories Gallery</h2>
+            <div className="col-12  d-flex justify-content-between flex-wrap align-items-center">
+                <h2 style={{ fontWeight: 'bold', fontSize: '2rem', color: 'rgb(64 105 124)' }} className={isSmallScreen ? "px-3  mb-4 col-12 col-md-6 col-sm-12 col-lg-6":"text-center px-3 mb-4 col-11 col-md-6 col-sm-11 col-lg-6" }>Memories Gallery</h2>
 
-                <p style={{maxWidth:'50%', display: 'block', color: `rgb(161 115 27)` }}>Click on  +  to add new images into gallery</p>
+                <p className={isSmallScreen ? 'col-12 col-md-6 col-sm-12 col-lg-6 ':'col-11 col-md-6 col-sm-11 col-lg-6 text-center'} style={{ color: `rgb(161 115 27)` }}>Click on  +  to add new images into gallery</p>
                 <button title='Add New Image'
                     className='btn btn-primary buttonImage'
                     onClick={() => setOptSmModal(!optSmModal)}

@@ -24,6 +24,34 @@ import '../cssfiles/remainder.css'
 
 const Remainder = () => {
 
+
+
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+        const handleResize = () => {      
+        
+       
+          if(window.innerWidth < 769){
+              setIsSmallScreen(true);
+          }else {
+              setIsSmallScreen(false);
+          }
+      }
+
+  window.addEventListener('resize', handleResize);
+  handleResize();
+  return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  },[isSmallScreen]);
+
+
+
+
+
+  
+
   const [welcomeModal, setWelcomeModal] = useState(true);
 
   const [optSmModal, setOptSmModal] = useState(false);
@@ -123,15 +151,16 @@ const Remainder = () => {
 
       <div style={{ maxWidth: '700px', position: 'relative' }} className="formbold-form-wrapper">
         <div className="formbold-form-title">
-          <button onClick={toggleShow} className="formbold-btn button_relative">+</button>
-
-          <h3>Medication Remainder List</h3>
-          <p>Keep your health on track with our reminder.<br /> Never forget a dose again with our app</p>
+          
+        <button style={isSmallScreen ? {top:`12%`}: {}} onClick={toggleShow} className="formbold-btn button_relative ">+</button>
+          <h3 style={isSmallScreen ? {width:'100%',fontSize:'15px'}: {}} className={isSmallScreen ? `text-center fw-5`: `fw-1`}>Medication Remainder List</h3>
+          <p style={isSmallScreen ? {width:'70%',fontSize:'14px'}: {}} className={isSmallScreen ? `text-center fw-6`: ``} >Never forget a dose again with our app</p>
         </div>
+        
 
         <div className="table-responsive">
           <table className="table table-striped">
-                                    <thead>
+                <thead>
             <tr>
               
               <th scope='col' className="fixed-column">Medication Name</th>
