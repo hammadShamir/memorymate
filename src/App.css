@@ -91,14 +91,14 @@
     min-width: 100% important;
   }
   .logo {
-    width: 128px;
+    width: 140px;
   }
 
   .slider-box1 {
     order: 1;
   }
 
-  .slider-box-2{
-      order: 2;
-  } 
+  .slider-box-2 {
+    order: 2;
+  }
 }

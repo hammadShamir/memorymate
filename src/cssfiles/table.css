@@ -46,9 +46,7 @@
   border-right: 1px solid #dee2e6; /* add a border to the right of the fixed column cells */
 }
 
-
 .table thead {
- 
   color: rgb(107, 162, 188);
   font-weight: bold;
   font-size: 17px;
@@ -62,17 +60,27 @@
   border-left: none;
 }
 
-
-
-
 /* contact button */
 
-.btn_contact{
- width:60px !important;
- background-color: #071D3B !important;
- transition: all 0.3s;
+.btn_contact {
+  width: 60px !important;
+  background-color: #071d3b !important;
+  transition: all 0.3s;
 }
 
-.btn_contact:hover{
+.btn_contact:hover {
   background-color: rgb(107, 162, 188) !important;
+}
+
+@media only screen and (max-width: 575px) {
+  .mob_font {
+    font-size: 20px !important;
+    text-align: center !important;
+    margin-bottom: 10px !important;
+  }
+  .const_font {
+    font-size: 20px !important;
+    text-align: left !important;
+    margin-top: 20px !important;
+  }
 }

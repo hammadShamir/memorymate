@@ -65,30 +65,30 @@ const Contact = () => {
         try {
 
 
-            auth.onAuthStateChanged( async(user) => {
+            auth.onAuthStateChanged(async (user) => {
                 if (user) {
-                  const userId = user.uid;
-                  // Use userId to access the user's data in Firestore or Realtime Database
+                    const userId = user.uid;
+                    // Use userId to access the user's data in Firestore or Realtime Database
 
 
-            const querySnapshot = await db
-                .collection("users")
-                .doc(auth.currentUser && auth.currentUser.uid)
-                .collection("contacts")
-                .orderBy("time", "desc")
-                .get()
-            const contacts = [];
-            querySnapshot.forEach((doc) => {
-                const contactData = doc.exists ? doc.data() : null;
-                contacts.push({
-                    id: doc.id,
-                    data: contactData,
-                });
+                    const querySnapshot = await db
+                        .collection("users")
+                        .doc(auth.currentUser && auth.currentUser.uid)
+                        .collection("contacts")
+                        .orderBy("time", "desc")
+                        .get()
+                    const contacts = [];
+                    querySnapshot.forEach((doc) => {
+                        const contactData = doc.exists ? doc.data() : null;
+                        contacts.push({
+                            id: doc.id,
+                            data: contactData,
+                        });
+                    });
+                    setContact(contacts);
+
+                }
             });
-            setContact(contacts);
-
-        }
-    });
 
 
 
@@ -105,59 +105,59 @@ const Contact = () => {
     return (
         <div className='row gap-3'>
             <div className="col-10 col-sm-11 col-md-8 m-auto ps-0 d-flex justify-content-between align-items-center">
-            <h2 style={{ fontWeight: 'bold', fontSize: '2rem', color: 'rgb(64 105 124)' }} className={" px-3 col-9 col-md-9 col-sm-8 col-lg-6" }>Your Contacts</h2>
+                <h2 style={{ fontWeight: 'bold', fontSize: '2rem', color: 'rgb(64 105 124)' }} className={" px-3 col-9 col-md-9 col-sm-8 col-lg-6 const_font"}>Your Contacts</h2>
 
-                <button  
+                <button
                     className='formbold-btn btn_contact'
                     onClick={() => setOptSmModal(!optSmModal)}
                 >+</button>
             </div>
             <div className="col-10 col-sm-11 col-md-8 m-auto border shadow">
-            <div className="table-responsive">
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            
-                            <th scope='col' className="fixed-column">First Name</th>
-                            <th scope='col'>Last Name</th>
-                            <th scope='col'>Contact</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            contact ? contact.length > 0 ? contact.map((item, ind) => {
-                                return (
-                                    <tr key={ind}>
-                                       
-                                        <td className="fixed-column">{item.data.firstName}</td>
-                                        <td>{item.data.lastName}</td>
-                                        <td>{item.data.number}</td>
+                <div className="table-responsive">
+                    <table className="table table-striped">
+                        <thead>
+                            <tr>
+
+                                <th scope='col' className="fixed-column">First Name</th>
+                                <th scope='col'>Last Name</th>
+                                <th scope='col'>Contact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                contact ? contact.length > 0 ? contact.map((item, ind) => {
+                                    return (
+                                        <tr key={ind}>
+
+                                            <td className="fixed-column">{item.data.firstName}</td>
+                                            <td>{item.data.lastName}</td>
+                                            <td>{item.data.number}</td>
+                                        </tr>
+                                    )
+                                }) : (
+                                    <tr>
+                                        <td colSpan="5" className='text-center'>
+                                            <p className=''>No Contact Available</p>
+                                        </td>
+                                    </tr>
+                                ) : (
+                                    <tr>
+                                        <td colSpan="5" className='text-center'>
+                                            <p className=''>Loading</p>
+                                        </td>
                                     </tr>
                                 )
-                            }) : (
-                                <tr>
-                                    <td colSpan="5" className='text-center'>
-                                        <p className=''>No Contact Available</p>
-                                    </td>
-                                </tr>
-                            ) : (
-                                <tr>
-                                    <td colSpan="5" className='text-center'>
-                                        <p className=''>Loading</p>
-                                    </td>
-                                </tr>
-                            )
-                        }
+                            }
 
-                    </tbody>
+                        </tbody>
 
 
 
 
 
 
-                </table>
-            </div>
+                    </table>
+                </div>
             </div>
 
 
@@ -201,29 +201,29 @@ const Contact = () => {
                                             )
 
                                         }}
-                                        value={formData.lastName}
-                                        
+                                            value={formData.lastName}
+
                                         />
                                     </div>
-                                    
+
                                 </div>
 
                                 <div className="formbold-mb-5">
-                        <label htmlFor="phone" className="formbold-form-label"> Phone Number </label>
-                        <input 
-                        type="number" 
-                        name="frequency" 
-                        id="number" 
-                        className="formbold-form-input" 
-                        placeholder='Phone Number' 
-                        onChange={(e) => {
+                                    <label htmlFor="phone" className="formbold-form-label"> Phone Number </label>
+                                    <input
+                                        type="number"
+                                        name="frequency"
+                                        id="number"
+                                        className="formbold-form-input"
+                                        placeholder='Phone Number'
+                                        onChange={(e) => {
                                             setFormData(
                                                 { ...formData, number: e.target.value }
                                             )
                                         }}
-                        value={formData.number}
-                        />
-                    </div>
+                                        value={formData.number}
+                                    />
+                                </div>
 
 
 
@@ -235,7 +235,7 @@ const Contact = () => {
                                 <button style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} className="formbold-btn">
                                     Add Contact
                                 </button>
-                                <img  src={loading}  style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} alt=''/>
+                                <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} alt='' />
                             </form>
 
 
@@ -259,24 +259,24 @@ const Contact = () => {
             />
 
 
-    <MDBModal show={welcomeModal} tabIndex='-1' setShow={setWelcomeModal}>
-                    <MDBModalDialog size='md'>
-                        <MDBModalContent>
-                            <MDBModalHeader>
-                                <MDBModalTitle></MDBModalTitle>
-                                <MDBBtn className='btn-close' color='none' onClick={() =>setWelcomeModal(false)}></MDBBtn>
-                            </MDBModalHeader>
+            <MDBModal show={welcomeModal} tabIndex='-1' setShow={setWelcomeModal}>
+                <MDBModalDialog size='md'>
+                    <MDBModalContent>
+                        <MDBModalHeader>
+                            <MDBModalTitle></MDBModalTitle>
+                            <MDBBtn className='btn-close' color='none' onClick={() => setWelcomeModal(false)}></MDBBtn>
+                        </MDBModalHeader>
 
-                            <MDBModalBody>
-                            <h4 className='fw-bold fs-5 mb-5 text-left'>Contact Section!</h4>
- 
+                        <MDBModalBody>
+                            <h4 className='fw-bold fs-4 mb-3 text-center mob_font'>Contact Section!</h4>
+
                             <p className='fw-light fs-6 text-center'> Adding emergency contacts is easy with our user-friendly interface. Simply click the "Add" button, enter the contact's name, relation, and phone number, and we'll securely store them in our database. Quick access to emergency contacts is crucial for the safety of dementia patients, and our feature provides peace of mind with just a few clicks.</p>
-                           
-                            <hr className='m-auto mt-5 mb-3 text-center' style={{width:'40%'}}></hr>  
-                            
-                            </MDBModalBody>
-                        </MDBModalContent>
-                    </MDBModalDialog>
+
+                            <hr className='m-auto mt-5 mb-3 text-center' style={{ width: '40%' }}></hr>
+
+                        </MDBModalBody>
+                    </MDBModalContent>
+                </MDBModalDialog>
             </MDBModal>
 
 

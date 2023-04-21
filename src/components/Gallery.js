@@ -25,24 +25,24 @@ const Gallery = () => {
     const [isSmallScreen, setIsSmallScreen] = useState(false);
 
     useEffect(() => {
-          const handleResize = () => {      
-          
-         
-            if(window.innerWidth < 600){
+        const handleResize = () => {
+
+
+            if (window.innerWidth < 600) {
                 setIsSmallScreen(true);
-            }else {
+            } else {
                 setIsSmallScreen(false);
             }
         }
-  
-    window.addEventListener('resize', handleResize);
-    handleResize();
-    return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    },[isSmallScreen]);
-  
-  
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [isSmallScreen]);
+
+
 
 
 
@@ -203,9 +203,9 @@ const Gallery = () => {
     return (
         <div className='row gap-2 py-4'>
             <div className="col-12  d-flex justify-content-between flex-wrap align-items-center">
-                <h2 style={{ fontWeight: 'bold', fontSize: '2rem', color: 'rgb(64 105 124)' }} className={isSmallScreen ? "px-3  mb-4 col-12 col-md-6 col-sm-12 col-lg-6":"text-center px-3 mb-4 col-11 col-md-6 col-sm-11 col-lg-6" }>Memories Gallery</h2>
+                <h2 style={{ fontWeight: 'bold', fontSize: '2rem', color: 'rgb(64 105 124)' }} className={isSmallScreen ? "px-3  mb-4 col-12 col-md-6 col-sm-12 col-lg-6 mob_font" : "text-left px-3 mb-4 col-11 col-md-6 col-sm-11 col-lg-6 "}>Memories Gallery</h2>
 
-                <p className={isSmallScreen ? 'col-12 col-md-6 col-sm-12 col-lg-6 ':'col-11 col-md-6 col-sm-11 col-lg-6 text-center'} style={{ color: `rgb(161 115 27)` }}>Click on  +  to add new images into gallery</p>
+                <p className={isSmallScreen ? 'col-12 col-md-6 col-sm-12 col-lg-6 ' : 'col-11 col-md-6 col-sm-11 col-lg-6 '} style={{ color: `rgb(161 115 27)`, textAlign: "right" }}>Click on  +  to add new images into gallery</p>
                 <button title='Add New Image'
                     className='btn btn-primary buttonImage'
                     onClick={() => setOptSmModal(!optSmModal)}
@@ -221,8 +221,8 @@ const Gallery = () => {
                             )
                         }) : (
                             <>
-                                <p className='text-center danger text-danger mt-5'>Add images to your gallery to display them here</p>
-                                <img style={{ position: 'absolute', maxWidth: '200px', right: '12%', bottom: `25%` }} src={arrow} />
+                                <p className='text-center danger text-danger'>Add images to your gallery to display them here</p>
+                                <img style={{ position: 'absolute', maxWidth: '200px', right: '12%', bottom: `16%` }} src={arrow} />
 
                             </>
                         )
@@ -334,24 +334,24 @@ const Gallery = () => {
 
 
 
-<MDBModal show={welcomeModal} tabIndex='-1' setShow={setWelcomeModal}>
-                    <MDBModalDialog size='md'>
-                        <MDBModalContent>
-                            <MDBModalHeader>
-                                <MDBModalTitle></MDBModalTitle>
-                                <MDBBtn className='btn-close' color='none' onClick={() =>setWelcomeModal(false)}></MDBBtn>
-                            </MDBModalHeader>
+            <MDBModal show={welcomeModal} tabIndex='-1' setShow={setWelcomeModal}>
+                <MDBModalDialog size='md'>
+                    <MDBModalContent>
+                        <MDBModalHeader>
+                            <MDBModalTitle></MDBModalTitle>
+                            <MDBBtn className='btn-close' color='none' onClick={() => setWelcomeModal(false)}></MDBBtn>
+                        </MDBModalHeader>
 
-                            <MDBModalBody>
-                            <h4 className='fw-bold fs-5 mb-5 text-left'>Welcome to our Photo Album Section.</h4>
- 
+                        <MDBModalBody>
+                            <h4 className='fw-bold fs-4  mb-3 text-center mob_font'>Welcome to our Photo Album Section.</h4>
+
                             <p className='fw-light fs-6 text-center'> Easily add your cherished photos to our photo album feature by clicking on the + button. Once you upload your photo, you can add a title and description, so you never forget the precious memories captured in each image. With our intuitive interface, you can create a personalized photo album that you can revisit anytime you want. Start preserving your most cherished memories today with just a few clicks.</p>
-                           
-                            <hr className='m-auto mt-5 mb-3 text-center' style={{width:'40%'}}></hr>  
-                            
-                            </MDBModalBody>
-                        </MDBModalContent>
-                    </MDBModalDialog>
+
+                            <hr className='m-auto mt-5 mb-3 text-center' style={{ width: '40%' }}></hr>
+
+                        </MDBModalBody>
+                    </MDBModalContent>
+                </MDBModalDialog>
             </MDBModal>
 
 

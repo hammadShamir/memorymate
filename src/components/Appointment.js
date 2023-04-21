@@ -38,8 +38,8 @@ const Appointment = () => {
 
 
     const [welcomeModal, setWelcomeModal] = useState(true);
-  
-    
+
+
 
     const [optSmModal, setOptSmModal] = useState(false);
     const toggleShow = () => setOptSmModal(!optSmModal);
@@ -131,8 +131,8 @@ const Appointment = () => {
 
         <div id='padding_15' className="formbold-main-wrapper">
 
-            <div className="formbold-form-wrapper">
-                <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className="  mb-4">Appointment Form</h2>
+            <div className="formbold-form-wrapper mob_form">
+                <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className="mb-4 mob_heading">Appointment Form</h2>
                 <hr />
                 <form style={{ position: `relative` }}>
                     <div className="formbold-mb-5">
@@ -259,7 +259,7 @@ const Appointment = () => {
 
 
                     <div >
-                        <button onClick={handleSubmit}  disabled={isBtnDisabled} className="formbold-btn">Book Appointment</button>
+                        <button onClick={handleSubmit} disabled={isBtnDisabled} className="formbold-btn">Book Appointment</button>
                     </div>
                     <div>
                     </div>
@@ -289,65 +289,65 @@ const Appointment = () => {
                             </MDBModalHeader>
 
                             <MDBModalBody>
-                            
-                            
-                            <div className="table-responsive">
-                                <table className="table table-striped">
-                                    <thead>
-                                        <tr>
-                                          
-                                         
-                                            <th scope='col' className="fixed-column">Appointment Date</th>
-                                            <th scope='col'>Time</th>
-                                            <th scope='col'>Days Left</th>
-                                            <th scope='col'>Doctor</th>
-                                            <th scope='col'>Address</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        {
-                                            appointData ? appointData.length > 0 ? appointData.map((obj, ind) => {
-                                                // Create a date object for the future date
-                                                const futureDate = new Date(obj.data.date);
 
 
-
-                                                // Calculate the time difference in milliseconds between the future date and the current date
-                                                const timeDiff = futureDate.getTime() - currentDate.getTime();
-
-                                                // Calculate the number of days left by dividing the time difference by the number of milliseconds in a day
-                                                const daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-                                                return (<tr key={obj.data.name}>
-                                                  
-                                                    <td className="fixed-column">{obj.data.date}</td>
-                                                    <td>{obj.data.time}</td>
-                                                    <td className='text-center'>{daysLeft}</td>
-                                                    <td>{obj.data.drName}</td>
-                                                    <td>{obj.data.Address}</td>
-                                                </tr>)
+                                <div className="table-responsive">
+                                    <table className="table table-striped">
+                                        <thead>
+                                            <tr>
 
 
-                                            }) : (
-                                                <tr>
-                                                    <td colSpan="6" className='text-center'>
-                                                        <p className=''>No Appointments Available</p>
-                                                    </td>
-                                                </tr>
-                                            ) : (
-                                                <tr>
-                                                    <td colSpan="6" className='text-center'>
-                                                        <p className=''>Loading... <img src={loading} width='20' />
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                            )
-                                        }
+                                                <th scope='col' className="fixed-column">Appointment Date</th>
+                                                <th scope='col'>Time</th>
+                                                <th scope='col'>Days Left</th>
+                                                <th scope='col'>Doctor</th>
+                                                <th scope='col'>Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                            {
+                                                appointData ? appointData.length > 0 ? appointData.map((obj, ind) => {
+                                                    // Create a date object for the future date
+                                                    const futureDate = new Date(obj.data.date);
+
+
+
+                                                    // Calculate the time difference in milliseconds between the future date and the current date
+                                                    const timeDiff = futureDate.getTime() - currentDate.getTime();
+
+                                                    // Calculate the number of days left by dividing the time difference by the number of milliseconds in a day
+                                                    const daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+                                                    return (<tr key={obj.data.name}>
+
+                                                        <td className="fixed-column">{obj.data.date}</td>
+                                                        <td>{obj.data.time}</td>
+                                                        <td className='text-center'>{daysLeft}</td>
+                                                        <td>{obj.data.drName}</td>
+                                                        <td>{obj.data.Address}</td>
+                                                    </tr>)
+
+
+                                                }) : (
+                                                    <tr>
+                                                        <td colSpan="6" className='text-center'>
+                                                            <p className=''>No Appointments Available</p>
+                                                        </td>
+                                                    </tr>
+                                                ) : (
+                                                    <tr>
+                                                        <td colSpan="6" className='text-center'>
+                                                            <p className=''>Loading... <img src={loading} width='20' />
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
 
 
                             </MDBModalBody>
@@ -358,23 +358,23 @@ const Appointment = () => {
 
 
             <MDBModal show={welcomeModal} tabIndex='-1' setShow={setWelcomeModal}>
-                    <MDBModalDialog size='md'>
-                        <MDBModalContent>
-                            <MDBModalHeader>
-                                <MDBModalTitle></MDBModalTitle>
-                                <MDBBtn className='btn-close' color='none' onClick={() =>setWelcomeModal(false)}></MDBBtn>
-                            </MDBModalHeader>
+                <MDBModalDialog size='md'>
+                    <MDBModalContent>
+                        <MDBModalHeader>
+                            <MDBModalTitle></MDBModalTitle>
+                            <MDBBtn className='btn-close' color='none' onClick={() => setWelcomeModal(false)}></MDBBtn>
+                        </MDBModalHeader>
 
-                            <MDBModalBody>
-                            <h4 className='fw-bold fs-5 mb-5 text-left'>Welcome to our Doctor Appointment Booking panel.</h4>
- 
+                        <MDBModalBody>
+                            <h4 className='fw-bold fs-4 text-center mb-3  mob_heading mob_font'>Welcome to our Doctor Appointment Booking panel.</h4>
+
                             <p className='fw-light fs-6 text-center'> Our application offers an easy-to-use appointment booking feature with specialized doctors who provide care and attention. Simply'Book an Appointment' by select a doctor and a convenient date and time, and receive an email confirmation with all the details. We're here to support and care for you during this challenging time.</p>
-                           
-                            <hr className='m-auto mt-5 mb-3 text-center' style={{width:'40%'}}></hr>  
-                            
-                            </MDBModalBody>
-                        </MDBModalContent>
-                    </MDBModalDialog>
+
+                            <hr className='m-auto mt-5 mb-3 text-center' style={{ width: '40%' }}></hr>
+
+                        </MDBModalBody>
+                    </MDBModalContent>
+                </MDBModalDialog>
             </MDBModal>
 
 
@@ -385,7 +385,7 @@ const Appointment = () => {
         </div>
 
 
-                        
+
 
     )
 }
