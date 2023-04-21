@@ -325,13 +325,13 @@ const Appointment = () => {
 
                                             }) : (
                                                 <tr>
-                                                    <td colspan="6" className='text-center'>
+                                                    <td colSpan="6" className='text-center'>
                                                         <p className=''>No Appointments Available</p>
                                                     </td>
                                                 </tr>
                                             ) : (
                                                 <tr>
-                                                    <td colspan="6" className='text-center'>
+                                                    <td colSpan="6" className='text-center'>
                                                         <p className=''>Loading... <img src={loading} width='20' />
                                                         </p>
                                                     </td>

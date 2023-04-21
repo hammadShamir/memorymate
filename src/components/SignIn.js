@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { auth } from '../Firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import loading from '../images/loading.gif'
 
@@ -55,7 +55,9 @@ function SignIn() {
   return (
     <div className="row h-100">
       <div className="col-10 col-md-6 m-auto ">
-        <h2 style={{ fontWeight: 'bold', fontSize: '30px', color: `#07074d` }} className=" mt-5 mb-4 text-center">Login</h2>
+        <h2 style={{  fontSize: '30px', color: `#07074d` }} className="fw-bold mt-5 ">Welcome to MemoryMate</h2>
+        <p className=' fw-light mb-4'>An Application for Dementia patients.</p>
+        <p className='mt-3 fw-lighter fs-6'>Please sign in to continue.</p>
         <form onSubmit={handleSignIn} style={{ position: `relative` }}>
           <div className="formbold-mb-3">
             <div>
@@ -90,7 +92,9 @@ function SignIn() {
           <div className=" text-center  mb-2">
             <button style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} className="formbold-btn btn_lg" disabled={isBtnDisabled} type="submit" >Sign In</button>
           </div>
-          <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
+          <img src={loading} style={{maxWidth:'120px', position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
+       
+        <p className='mt-3 mb-5 fw-light'>If you don't have an account, then <Link  className='fw-bold text-success' to='/signup'>Register here</Link></p>
         </form>
         <ToastContainer
           position="top-right"

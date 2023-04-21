@@ -87,3 +87,19 @@ top: 4%;
   
 
 }
+
+#padding_15 {
+  
+  padding: 15px !important;
+  margin-top: 3%;
+  
+}
+
+
+@media only screen and (max-width: 600px){
+  #padding_15 {
+  
+    padding: 15px !important;
+    
+  }
+}

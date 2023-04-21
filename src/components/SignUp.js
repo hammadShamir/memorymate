@@ -63,12 +63,12 @@ const SignUp = () => {
     return (
         <div className="formbold-main-wrapper">
             <div className="formbold-form-wrappe">
-                {/* <img src={register} alt='register ' /> */}
+                
 
                 <form onSubmit={handleSignUp} style={{ position: `relative` }}>
                     <div className="formbold-form-title">
-                        <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className=" mt-5 mb-4">Register now</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                        <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className=" mt-5 mb-4">Welcome to MemoryMate!</h2>
+                        <p>Before you can start using app, we need to create an account for you.</p>
                     </div>
                     <div className="formbold-input-flex">
                         <div>
@@ -97,11 +97,19 @@ const SignUp = () => {
                         </div>
                     </div>
                     <div className="formbold-checkbox-wrapper">
-                        <label htmlFor="supportCheckbox" className="formbold-checkbox-label"> By Registering , I agree to the terms, conditions, and policies </label>
+                        <label htmlFor="supportCheckbox" className="formbold-checkbox-label">By creating an account, you agree to our terms and conditions and privacy policy.</label>
                     </div>
                     <button style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} className="formbold-btn btn_lg" disabled={isBtnDisabled}>Register Now</button>
-                    <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
+                    <img src={loading} style={{maxWidth:'120px', position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
+                    <br/>
+                
+                
+                <p className='fw-light mt-5'>If you have any questions or concerns, please contact us at - <span style={{fontStyle:'italic', color:`rgb(250,168,11)`,fontWeight:'bold'}}> memorymate@gmail.com </span> </p>
+                   
+            
+                
                 </form>
+                
                 <ToastContainer
                     position="top-right"
                     autoClose={3000}
