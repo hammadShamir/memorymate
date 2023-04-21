@@ -37,6 +37,8 @@ const initialize = {
 const Appointment = () => {
 
 
+    const [welcomeModal, setWelcomeModal] = useState(true);
+    const toggleWelcomeModal = () => setWelcomeModal(welcomeModal);
     
 
     const [optSmModal, setOptSmModal] = useState(false);
@@ -353,6 +355,33 @@ const Appointment = () => {
                     </MDBModalDialog>
                 </MDBModal>
             </div>
+
+
+            <MDBModal show={welcomeModal} tabIndex='-1' setShow={setWelcomeModal}>
+                    <MDBModalDialog size='md'>
+                        <MDBModalContent>
+                            <MDBModalHeader>
+                                <MDBModalTitle></MDBModalTitle>
+                                <MDBBtn className='btn-close' color='none' onClick={() =>setWelcomeModal(false)}></MDBBtn>
+                            </MDBModalHeader>
+
+                            <MDBModalBody>
+                            <h4 className='fw-bold fs-4 mb-5 text-left'>Welcome to our doctor appointment booking panel.</h4>
+                                       
+                            <p className='fw-light fs-6 text-center'> Here, you can book an appointment with our caring and experienced doctors who specialize in treating Dementia.</p>
+                            <hr className='m-auto mt-3 mb-3 text-center' style={{width:'40%'}}></hr>
+                            <p className='fw-lighter text-center'>Booking an appointment is simple and easy. You can choose your preferred doctor and time that works best for you. We will send you a reminder before your appointment, so you don't forget.</p>
+                            <hr className='m-auto mt-3 mb-3 text-center' style={{width:'40%'}}></hr>
+                           <p className='fw-lighter text-center'>We are here to help you get the care you need. Thank you for choosing us!</p>
+                           
+                            </MDBModalBody>
+                        </MDBModalContent>
+                    </MDBModalDialog>
+                </MDBModal>
+
+
+
+
 
 
         </div>
