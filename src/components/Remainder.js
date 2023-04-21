@@ -24,6 +24,8 @@ import '../cssfiles/remainder.css'
 
 const Remainder = () => {
 
+  const [welcomeModal, setWelcomeModal] = useState(true);
+
   const [optSmModal, setOptSmModal] = useState(false);
   const toggleShow = () => setOptSmModal(!optSmModal);
 
@@ -307,6 +309,27 @@ const Remainder = () => {
           pauseOnHover
           theme="colored"
         />
+
+<MDBModal show={welcomeModal} tabIndex='-1' setShow={setWelcomeModal}>
+                    <MDBModalDialog size='md'>
+                        <MDBModalContent>
+                            <MDBModalHeader>
+                                <MDBModalTitle></MDBModalTitle>
+                                <MDBBtn className='btn-close' color='none' onClick={() =>setWelcomeModal(false)}></MDBBtn>
+                            </MDBModalHeader>
+
+                            <MDBModalBody>
+                            <h4 className='fw-bold fs-5 mb-5 text-left'>Welcome to our Medication Reminder panel.</h4>
+ 
+                            <p className='fw-light fs-6 text-center'> To take advantage of our medication reminder feature, simply enter the medication name, dose, and time below, and we'll take care of the rest. Our user-friendly interface will provide a comprehensive list of all your medications, with timely reminders to ensure you never miss a dose. Say goodbye to the hassle of keeping track of your medication schedule and take control of your health today.</p>
+                           
+                            <hr className='m-auto mt-5 mb-3 text-center' style={{width:'40%'}}></hr>  
+                            
+                            </MDBModalBody>
+                        </MDBModalContent>
+                    </MDBModalDialog>
+            </MDBModal>
+
 
       </div>
     </div >

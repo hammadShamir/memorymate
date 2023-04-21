@@ -24,6 +24,10 @@ const initialValue = {
 }
 
 const Contact = () => {
+
+    const [welcomeModal, setWelcomeModal] = useState(true);
+
+
     const [optSmModal, setOptSmModal] = useState(false);
     const [formData, setFormData] = useState(initialValue);
     const [isBtnDisabled, setisButtonDisabled] = useState(false);
@@ -262,6 +266,29 @@ const Contact = () => {
                 pauseOnHover
                 theme="colored"
             />
+
+
+<MDBModal show={welcomeModal} tabIndex='-1' setShow={setWelcomeModal}>
+                    <MDBModalDialog size='md'>
+                        <MDBModalContent>
+                            <MDBModalHeader>
+                                <MDBModalTitle></MDBModalTitle>
+                                <MDBBtn className='btn-close' color='none' onClick={() =>setWelcomeModal(false)}></MDBBtn>
+                            </MDBModalHeader>
+
+                            <MDBModalBody>
+                            <h4 className='fw-bold fs-5 mb-5 text-left'>Contact Section!</h4>
+ 
+                            <p className='fw-light fs-6 text-center'> Adding emergency contacts is easy with our user-friendly interface. Simply click the "Add" button, enter the contact's name, relation, and phone number, and we'll securely store them in our database. Quick access to emergency contacts is crucial for the safety of dementia patients, and our feature provides peace of mind with just a few clicks.</p>
+                           
+                            <hr className='m-auto mt-5 mb-3 text-center' style={{width:'40%'}}></hr>  
+                            
+                            </MDBModalBody>
+                        </MDBModalContent>
+                    </MDBModalDialog>
+            </MDBModal>
+
+
         </div >
     )
 }

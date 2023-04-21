@@ -24,7 +24,7 @@ const Gallery = () => {
     const [isBtnDisabled, setisButtonDisabled] = useState(false);
 
     // 
-
+    const [welcomeModal, setWelcomeModal] = useState(true);
 
 
 
@@ -291,6 +291,32 @@ const Gallery = () => {
                 pauseOnHover
                 theme="colored"
             />
+
+
+
+
+<MDBModal show={welcomeModal} tabIndex='-1' setShow={setWelcomeModal}>
+                    <MDBModalDialog size='md'>
+                        <MDBModalContent>
+                            <MDBModalHeader>
+                                <MDBModalTitle></MDBModalTitle>
+                                <MDBBtn className='btn-close' color='none' onClick={() =>setWelcomeModal(false)}></MDBBtn>
+                            </MDBModalHeader>
+
+                            <MDBModalBody>
+                            <h4 className='fw-bold fs-5 mb-5 text-left'>Welcome to our Photo Album Section.</h4>
+ 
+                            <p className='fw-light fs-6 text-center'> Easily add your cherished photos to our photo album feature by clicking on the + button. Once you upload your photo, you can add a title and description, so you never forget the precious memories captured in each image. With our intuitive interface, you can create a personalized photo album that you can revisit anytime you want. Start preserving your most cherished memories today with just a few clicks.</p>
+                           
+                            <hr className='m-auto mt-5 mb-3 text-center' style={{width:'40%'}}></hr>  
+                            
+                            </MDBModalBody>
+                        </MDBModalContent>
+                    </MDBModalDialog>
+            </MDBModal>
+
+
+
         </div >
     )
 }

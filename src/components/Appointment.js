@@ -38,7 +38,7 @@ const Appointment = () => {
 
 
     const [welcomeModal, setWelcomeModal] = useState(true);
-    const toggleWelcomeModal = () => setWelcomeModal(welcomeModal);
+  
     
 
     const [optSmModal, setOptSmModal] = useState(false);
@@ -366,18 +366,16 @@ const Appointment = () => {
                             </MDBModalHeader>
 
                             <MDBModalBody>
-                            <h4 className='fw-bold fs-4 mb-5 text-left'>Welcome to our doctor appointment booking panel.</h4>
-                                       
-                            <p className='fw-light fs-6 text-center'> Here, you can book an appointment with our caring and experienced doctors who specialize in treating Dementia.</p>
-                            <hr className='m-auto mt-3 mb-3 text-center' style={{width:'40%'}}></hr>
-                            <p className='fw-lighter text-center'>Booking an appointment is simple and easy. You can choose your preferred doctor and time that works best for you. We will send you a reminder before your appointment, so you don't forget.</p>
-                            <hr className='m-auto mt-3 mb-3 text-center' style={{width:'40%'}}></hr>
-                           <p className='fw-lighter text-center'>We are here to help you get the care you need. Thank you for choosing us!</p>
+                            <h4 className='fw-bold fs-5 mb-5 text-left'>Welcome to our Doctor Appointment Booking panel.</h4>
+ 
+                            <p className='fw-light fs-6 text-center'> Our application offers an easy-to-use appointment booking feature with specialized doctors who provide care and attention. Simply'Book an Appointment' by select a doctor and a convenient date and time, and receive an email confirmation with all the details. We're here to support and care for you during this challenging time.</p>
                            
+                            <hr className='m-auto mt-5 mb-3 text-center' style={{width:'40%'}}></hr>  
+                            
                             </MDBModalBody>
                         </MDBModalContent>
                     </MDBModalDialog>
-                </MDBModal>
+            </MDBModal>
 
 
 

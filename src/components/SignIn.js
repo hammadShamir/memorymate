@@ -55,9 +55,9 @@ function SignIn() {
   return (
     <div className="row h-100">
       <div className="col-10 col-md-6 m-auto ">
-        <h2 style={{  fontSize: '30px', color: `#07074d` }} className="fw-bold mt-5 ">Welcome to MemoryMate</h2>
-        <p className=' fw-light mb-4'>An Application for Dementia patients.</p>
-        <p className='mt-3 fw-lighter fs-6'>Please sign in to continue.</p>
+        <h2 style={{  color: `#07074d` }} className="fw-bold mt-5 fs-1 ml-auto">Welcome to Memory Mate! <br/> <span  className='fw-light fs-4 text-right'>for Dementia patients</span></h2>
+        <p className=' fw-light mt-3 mb-4'>Please enter your credentials to access your account.</p>
+        {/* <p className='mt-3 fw-lighter fs-6'>Please enter your credentials to access your account.</p> */}
         <form onSubmit={handleSignIn} style={{ position: `relative` }}>
           <div className="formbold-mb-3">
             <div>
@@ -94,7 +94,7 @@ function SignIn() {
           </div>
           <img src={loading} style={{maxWidth:'120px', position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
        
-        <p className='mt-3 mb-5 fw-light'>If you don't have an account, then <Link  className='fw-bold text-success' to='/signup'>Register here</Link></p>
+        <p className='mt-3 mb-5 fw-light'>Don't have an account yet? Click on the "<Link  className='fw-bold text-success' to='/signup'>Sign Up</Link>" button to create one.</p>
         </form>
         <ToastContainer
           position="top-right"

@@ -64,7 +64,7 @@
   
 .button_relative{
   text-align: center;
-  width: auto;
+  width: auto! important;
   font-size: 18px;
   border-radius: 8px;
 position: absolute;
