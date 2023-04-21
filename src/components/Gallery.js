@@ -76,7 +76,7 @@ const Gallery = () => {
                     toast.success(`Image Added Successfully!`);
                     //set values to null
                     initialize();
-
+                    removeImage()
                     setLoadImg(false);
                     setisButtonDisabled(false);
                     setOptSmModal(!optSmModal);
@@ -98,7 +98,7 @@ const Gallery = () => {
         setSelectedFile(null);
         $('.file-upload-input').val('');  /// working
         $('.file-upload-content').hide();
-      
+
         $('.image-upload-wrap').show();
     }
 
@@ -124,27 +124,27 @@ const Gallery = () => {
 
 
 
-            auth.onAuthStateChanged( async(user) => {
+            auth.onAuthStateChanged(async (user) => {
                 if (user) {
-                  const userId = user.uid;
-                  // Use userId to access the user's data in Firestore or Realtime Database
+                    const userId = user.uid;
+                    // Use userId to access the user's data in Firestore or Realtime Database
 
-            const querySnapshot = await db
-                .collection("users")
-                .doc(userId)
-                .collection("gallery")
-                .orderBy("time", "desc")
-                .get()
-            const items = [];
-            querySnapshot.forEach((doc) => {
-                const galleryData = doc.exists ? doc.data() : null;
-                items.push({
-                    id: doc.id,
-                    data: galleryData,
-                });
-            });
-            setGalleryItems(items);
-        
+                    const querySnapshot = await db
+                        .collection("users")
+                        .doc(userId)
+                        .collection("gallery")
+                        .orderBy("time", "desc")
+                        .get()
+                    const items = [];
+                    querySnapshot.forEach((doc) => {
+                        const galleryData = doc.exists ? doc.data() : null;
+                        items.push({
+                            id: doc.id,
+                            data: galleryData,
+                        });
+                    });
+                    setGalleryItems(items);
+
                 }
             });
         } catch (error) {
@@ -181,9 +181,9 @@ const Gallery = () => {
                             )
                         }) : (
                             <>
-                            <p className='text-center danger text-danger mt-5'>Add images to your gallery to display them here</p>
-                            <img style={{position:'absolute',maxWidth:'200px',right:'12%', bottom:`25%`}} src={arrow}/>
-                            
+                                <p className='text-center danger text-danger mt-5'>Add images to your gallery to display them here</p>
+                                <img style={{ position: 'absolute', maxWidth: '200px', right: '12%', bottom: `25%` }} src={arrow} />
+
                             </>
                         )
                     }
@@ -253,7 +253,7 @@ const Gallery = () => {
                                             alt="your image"
                                         />
                                         <div className="image-title-wrap">
-                                            <button style={{width:'80%'}} type="button" onClick={removeImage} className="remove-image">
+                                            <button style={{ width: '80%' }} type="button" onClick={removeImage} className="remove-image">
                                                 Remove <span className="image-title">Uploaded Image</span>
                                             </button>
                                         </div>
