@@ -16,8 +16,7 @@ import {
     MDBModalBody
 } from 'mdb-react-ui-kit';
 
-import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
-
+import '../cssfiles/table.css'
 
 // images
 import loading from '../images/loading.gif'
@@ -124,7 +123,7 @@ const Appointment = () => {
 
     return (
 
-        <div className="formbold-main-wrapper">
+        <div id='padding_15' className="formbold-main-wrapper">
 
             <div className="formbold-form-wrapper">
                 <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className="  mb-4">Appointment Form</h2>
@@ -282,20 +281,24 @@ const Appointment = () => {
                                 <MDBModalTitle>Appointment List</MDBModalTitle>
                                 <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
                             </MDBModalHeader>
+
                             <MDBModalBody>
-                                <MDBTable>
-                                    <MDBTableHead>
+                            
+                            
+                            <div className="table-responsive">
+                                <table className="table table-striped">
+                                    <thead>
                                         <tr>
-                                            <th scope='col'>#</th>
-                                            {/* <th scope='col'>Name</th> */}
-                                            <th scope='col'>Appointment Date</th>
+                                          
+                                         
+                                            <th scope='col' className="fixed-column">Appointment Date</th>
                                             <th scope='col'>Time</th>
                                             <th scope='col'>Days Left</th>
                                             <th scope='col'>Doctor</th>
                                             <th scope='col'>Address</th>
                                         </tr>
-                                    </MDBTableHead>
-                                    <MDBTableBody>
+                                    </thead>
+                                    <tbody>
 
                                         {
                                             appointData ? appointData.length > 0 ? appointData.map((obj, ind) => {
@@ -311,9 +314,8 @@ const Appointment = () => {
                                                 const daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
                                                 return (<tr key={obj.data.name}>
-                                                    <th scope='row'>{ind + 1}</th>
-                                                    {/* <td>{obj.data.name}</td> */}
-                                                    <td>{obj.data.date}</td>
+                                                  
+                                                    <td className="fixed-column">{obj.data.date}</td>
                                                     <td>{obj.data.time}</td>
                                                     <td className='text-center'>{daysLeft}</td>
                                                     <td>{obj.data.drName}</td>
@@ -337,8 +339,11 @@ const Appointment = () => {
                                             )
                                         }
 
-                                    </MDBTableBody>
-                                </MDBTable>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
                             </MDBModalBody>
                         </MDBModalContent>
                     </MDBModalDialog>

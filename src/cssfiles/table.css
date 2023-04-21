@@ -1,0 +1,63 @@
+/* table design */
+.table-responsive {
+  min-height: 300px; /* set the desired height */
+}
+
+.table {
+  margin-bottom: 0; /* remove the default bottom margin */
+  border-collapse: collapse; /* remove borders between cells */
+  font-size: 14px; /* set the font size for all table cells */
+  font-family: inter, sans-serif; /* set the font family for all table cells */
+}
+
+.table thead th {
+  font-weight: bold; /* make table header cells bold */
+  background-color: #f2f2f2; /* set background color for table header */
+  border: 1px solid #dee2e6; /* add border to table header cells */
+  text-align: center; /* center align table header text */
+  padding: 8px; /* add padding to table header cells */
+}
+
+.table tbody td {
+  border: 1px solid #dee2e6; /* add border to table data cells */
+  text-align: center; /* center align table data text */
+  padding: 8px; /* add padding to table data cells */
+}
+
+.fixed-column {
+  position: sticky;
+  left: 0;
+  top: 0;
+  text-align: left;
+  font-weight: bold; /* make fixed column text bold */
+  background-color: #f2f2f2; /* set background color for fixed column */
+  border: 1px solid #dee2e6; /* add border to fixed column cells */
+  z-index: 1; /* make sure the fixed column is in front of the scrollable content */
+  width: 150px; /* set the width of the fixed column */
+}
+
+.table th,
+.table td {
+  white-space: nowrap; /* prevent wrapping of table cell content */
+}
+
+.table thead th:first-child,
+.table tbody td:first-child {
+  border-right: 1px solid #dee2e6; /* add a border to the right of the fixed column cells */
+}
+
+
+.table thead {
+ 
+  color: rgb(107, 162, 188);
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.table th {
+  border: none;
+}
+
+.table th:not(:first-child) {
+  border-left: none;
+}

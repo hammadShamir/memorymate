@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import db, { auth } from '../Firebase';
-import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
+import { MDBTable, MDBTableHead, MDBTableBody as tbody } from 'mdb-react-ui-kit';
 import {
     MDBBtn,
     MDBModal,
@@ -10,6 +10,9 @@ import {
     MDBModalTitle,
     MDBModalBody
 } from 'mdb-react-ui-kit';
+
+import '../cssfiles/table.css'
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import loading from '../images/loading.gif'
@@ -96,7 +99,7 @@ const Contact = () => {
     }, [optSmModal])
 
     return (
-        <div className='row gap-2'>
+        <div className='row gap-3'>
             <div className="col-8 m-auto ps-0 d-flex justify-content-between">
                 <h3>Your Contacts</h3>
                 <button
@@ -104,44 +107,62 @@ const Contact = () => {
                     onClick={() => setOptSmModal(!optSmModal)}
                 >Add Contact</button>
             </div>
-            <div className="col-8 m-auto border shadow">
-                <MDBTable>
-                    <MDBTableHead>
+            <div className="col-8 col-sm-11 col-md-8 m-auto border shadow">
+            <div className="table-responsive">
+                <table className="table table-striped">
+                    <thead>
                         <tr>
-                            <th scope='col'>#</th>
-                            <th scope='col'>First Name</th>
+                            
+                            <th scope='col' className="fixed-column">First Name</th>
                             <th scope='col'>Last Name</th>
                             <th scope='col'>Contact</th>
                         </tr>
-                    </MDBTableHead>
-                    <MDBTableBody>
+                    </thead>
+                    <tbody>
                         {
                             contact ? contact.length > 0 ? contact.map((item, ind) => {
                                 return (
                                     <tr key={ind}>
-                                        <th scope='row'>{ind + 1}</th>
-                                        <td>{item.data.firstName}</td>
+                                       
+                                        <td className="fixed-column">{item.data.firstName}</td>
                                         <td>{item.data.lastName}</td>
                                         <td>{item.data.number}</td>
                                     </tr>
                                 )
                             }) : (
                                 <tr>
-                                    <td colspan="5" className='text-center'>
+                                    <td colSpan="5" className='text-center'>
                                         <p className=''>No Contact Available</p>
                                     </td>
                                 </tr>
                             ) : (
                                 <tr>
-                                    <td colspan="5" className='text-center'>
+                                    <td colSpan="5" className='text-center'>
                                         <p className=''>Loading</p>
                                     </td>
                                 </tr>
                             )
                         }
 
-                    </MDBTableBody>
-                </MDBTable>
+                    </tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </table>
+            </div>
             </div>
 
 
@@ -165,34 +186,57 @@ const Contact = () => {
                                             name="medicationName"
                                             id="medicationName"
                                             className="formbold-form-input"
-                                            placeholder='Enter First Name...'
+                                            placeholder='First Name'
                                             onChange={(e) => {
                                                 setFormData(
                                                     { ...formData, firstName: e.target.value }
                                                 )
                                             }}
+                                            value={formData.firstName}
                                         />
                                     </div>
                                 </div>
 
-                                <div className="formbold-input-flex">
-                                    <div title='Specify the amount of medication you need to take each time.'>
+                                <div className="formbold-mb-5">
+                                    <div >
                                         <label htmlFor="Dosage" className="formbold-form-label">Last Name </label>
                                         <input type="text" name="dosage" id="Dosage" placeholder='Enter Last Name...' className="formbold-form-input" onChange={(e) => {
                                             setFormData(
                                                 { ...formData, lastName: e.target.value }
                                             )
-                                        }} />
+
+                                        }}
+                                        value={formData.lastName}
+                                        
+                                        />
                                     </div>
-                                    <div title='Specify how often you need to take medication e.g. daily, weekly, monthly, etc.'>
-                                        <label htmlFor="Frequency" className="formbold-form-label">Phone Number </label>
-                                        <input type="text" name="frequency" id="Frequency" className="formbold-form-input" placeholder='Enter Phone Number...' onChange={(e) => {
+                                    
+                                </div>
+
+                                <div className="formbold-mb-5">
+                        <label htmlFor="phone" className="formbold-form-label"> Phone Number </label>
+                        <input 
+                        type="number" 
+                        name="frequency" 
+                        id="number" 
+                        className="formbold-form-input" 
+                        placeholder='Phone Number' 
+                        onChange={(e) => {
                                             setFormData(
                                                 { ...formData, number: e.target.value }
                                             )
-                                        }} />
-                                    </div>
-                                </div>
+                                        }}
+                        value={formData.number}
+                        />
+                    </div>
+
+
+
+
+
+
+
+
                                 <button style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} className="formbold-btn">
                                     Add Contact
                                 </button>

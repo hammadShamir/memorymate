@@ -3,6 +3,7 @@ import db, { auth } from '../Firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import '../cssfiles/table.css'
 
 //modal
 import {
@@ -14,8 +15,6 @@ import {
   MDBModalTitle,
   MDBModalBody
 } from 'mdb-react-ui-kit';
-
-import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 
 
 // images
@@ -114,16 +113,11 @@ const Remainder = () => {
   }, [optSmModal])
 
 
-  const minCount = () => {
-    const today = new Date();
-    today.setDate(today.getDate() + 2);
-    const formattedToday = today.toISOString().split("T")[0];
-    return formattedToday;
-}
+
 
 
   return (
-    < div className="formbold-main-wrapper">
+    <div id='padding_15' className="formbold-main-wrapper">
 
       <div style={{ maxWidth: '700px', position: 'relative' }} className="formbold-form-wrapper">
         <div className="formbold-form-title">
@@ -133,27 +127,27 @@ const Remainder = () => {
           <p>Keep your health on track with our reminder.<br /> Never forget a dose again with our app</p>
         </div>
 
-        <MDBTable>
-          <MDBTableHead>
+        <div className="table-responsive">
+          <table className="table table-striped">
+                                    <thead>
             <tr>
-              <th scope='col'>#</th>
-              <th scope='col'>Medication Name</th>
+              
+              <th scope='col' className="fixed-column">Medication Name</th>
               <th scope='col'>Dosage</th>
               <th scope='col'>Frequency</th>
               <th scope='col'>Start Date</th>
               <th scope='col'>End Date</th>
             </tr>
-          </MDBTableHead>
-          <MDBTableBody>
+          </thead>
+          <tbody>
 
             {
               remaind ?
                 remaind.length > 0 ?
                   remaind.map((item, ind) => {
                     return (
-                      <tr key={ind}>
-                        <th scope='row'>{ind + 1}</th>
-                        <td>{item.data.medicationName}</td>
+                      <tr key={item.data.medicationName}>
+                        <td className="fixed-column">{item.data.medicationName}</td>
                         <td>{item.data.dosage}</td>
                         <td>{item.data.frequency}</td>
                         <td>{item.data.startDate}</td>
@@ -175,10 +169,9 @@ const Remainder = () => {
                 )
             }
 
-          </MDBTableBody>
-        </MDBTable>
-
-
+          </tbody>
+        </table>
+      </div>
 
 
 
