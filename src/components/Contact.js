@@ -56,6 +56,14 @@ const Contact = () => {
     }
     const fetchData = async () => {
         try {
+
+
+            auth.onAuthStateChanged( async(user) => {
+                if (user) {
+                  const userId = user.uid;
+                  // Use userId to access the user's data in Firestore or Realtime Database
+
+
             const querySnapshot = await db
                 .collection("users")
                 .doc(auth.currentUser && auth.currentUser.uid)
@@ -71,6 +79,12 @@ const Contact = () => {
                 });
             });
             setContact(contacts);
+
+        }
+    });
+
+
+
         } catch (error) {
             console.error("Error fetching Contacts: ", error);
         }

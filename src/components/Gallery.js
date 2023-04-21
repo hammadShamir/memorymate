@@ -18,6 +18,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Gallery = () => {
+
     const [optSmModal, setOptSmModal] = useState(false);
     const [loadImg, setLoadImg] = useState(false);
     const [isBtnDisabled, setisButtonDisabled] = useState(false);
@@ -36,7 +37,7 @@ const Gallery = () => {
     const initialize = () => {
         setTitle('');
         setDesc('');
-        setSelectedFile(null);
+        $('.file-upload-input').val('');
         setGalleryItems([]);
     }
 
@@ -78,7 +79,7 @@ const Gallery = () => {
 
                     setLoadImg(false);
                     setisButtonDisabled(false);
-                    setOptSmModal(!optSmModal)
+                    setOptSmModal(!optSmModal);
                 })
                 .catch((error) => {
                     toast.error(`Error adding document:`);
@@ -97,6 +98,7 @@ const Gallery = () => {
         setSelectedFile(null);
         $('.file-upload-input').val('');  /// working
         $('.file-upload-content').hide();
+      
         $('.image-upload-wrap').show();
     }
 
@@ -119,9 +121,17 @@ const Gallery = () => {
     // Fetching Gallery Data
     const fetchGallery = async () => {
         try {
+
+
+
+            auth.onAuthStateChanged( async(user) => {
+                if (user) {
+                  const userId = user.uid;
+                  // Use userId to access the user's data in Firestore or Realtime Database
+
             const querySnapshot = await db
                 .collection("users")
-                .doc(auth.currentUser.uid)
+                .doc(userId)
                 .collection("gallery")
                 .orderBy("time", "desc")
                 .get()
@@ -134,6 +144,9 @@ const Gallery = () => {
                 });
             });
             setGalleryItems(items);
+        
+                }
+            });
         } catch (error) {
             console.error("Error fetching Contacts: ", error);
         }
@@ -225,6 +238,7 @@ const Gallery = () => {
                                         type="file"
                                         onChange={handleFileInputChange}
                                         accept="image/*"
+
                                     />
                                     <div className="drag-text">
                                         <h3>Click to select an image</h3>

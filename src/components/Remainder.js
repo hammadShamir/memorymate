@@ -77,21 +77,32 @@ const Remainder = () => {
 
   const fetchData = async () => {
     try {
-      const querySnapshot = await db
-        .collection("users")
-        .doc(auth.currentUser && auth.currentUser.uid)
-        .collection("reminder")
-        .orderBy("currentTime", "desc")
-        .get()
-      const remainders = [];
-      querySnapshot.forEach((doc) => {
-        const remainderData = doc.exists ? doc.data() : null;
-        remainders.push({
-          id: doc.id,
-          data: remainderData,
+
+      auth.onAuthStateChanged( async(user) => {
+        if (user) {
+          const userId = user.uid;
+          // Use userId to access the user's data in Firestore or Realtime Database
+          const remindersCollection = db.collection("users").doc(userId).collection("reminder");
+          const querySnapshot = await remindersCollection.orderBy("currentTime", "desc").get();
+  
+        const remainders = [];
+        querySnapshot.forEach((doc) => {
+          const remainderData = doc.exists ? doc.data() : null;
+          remainders.push({
+            id: doc.id,
+            data: remainderData,
+          });
         });
+        setRemaind(remainders);
+
+
+
+        } else {
+          console.log(`userNotLogedIn`)
+        }
       });
-      setRemaind(remainders);
+
+
     } catch (error) {
       console.error("Error fetching Contacts: ", error);
     }
@@ -109,6 +120,8 @@ const Remainder = () => {
     const formattedToday = today.toISOString().split("T")[0];
     return formattedToday;
 }
+
+
   return (
     < div className="formbold-main-wrapper">
 
@@ -149,14 +162,14 @@ const Remainder = () => {
                     )
                   }) : (
                     <tr>
-                      <td colspan="5" className='text-center'>
+                      <td colSpan="5" className='text-center'>
                         <p className='text-secondary'>No Remainder Available</p>
                       </td>
                     </tr>
                   ) : (
                   <tr>
-                    <td colspan="5" className='text-center'>
-                      <p className='text-secondary'>Loading</p>
+                    <td colSpan="5" className='text-center'>
+                      <p className='text-secondary'>Loading...<img src={loading} width='20'/></p>
                     </td>
                   </tr>
                 )

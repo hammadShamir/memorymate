@@ -111,16 +111,16 @@ const Appointment = () => {
         fetchAppointments();
     }, [optSmModal]);
 
-// Get the current date
-const currentDate = new Date();
+    // Get the current date
+    const currentDate = new Date();
 
 
-const minCount = () => {
-    const today = new Date();
-    today.setDate(today.getDate() + 1);
-    const formattedToday = today.toISOString().split("T")[0];
-    return formattedToday;
-}
+    const minCount = () => {
+        const today = new Date();
+        today.setDate(today.getDate() + 1);
+        const formattedToday = today.toISOString().split("T")[0];
+        return formattedToday;
+    }
 
     return (
 
@@ -170,7 +170,7 @@ const minCount = () => {
                             id="age"
                             placeholder="e.g. 25"
                             className="formbold-form-input"
-                           
+
                             onChange={(e) => {
                                 setFormData(
                                     { ...formData, age: e.target.value }
@@ -297,32 +297,30 @@ const minCount = () => {
                                     </MDBTableHead>
                                     <MDBTableBody>
 
-
-
                                         {
-                                             appointData ? appointData.length > 0 ? appointData.map((obj, ind) => {
-                                               // Create a date object for the future date
-const futureDate = new Date(obj.data.date);
+                                            appointData ? appointData.length > 0 ? appointData.map((obj, ind) => {
+                                                // Create a date object for the future date
+                                                const futureDate = new Date(obj.data.date);
 
 
 
-// Calculate the time difference in milliseconds between the future date and the current date
-const timeDiff = futureDate.getTime() - currentDate.getTime();
+                                                // Calculate the time difference in milliseconds between the future date and the current date
+                                                const timeDiff = futureDate.getTime() - currentDate.getTime();
 
-// Calculate the number of days left by dividing the time difference by the number of milliseconds in a day
-const daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                                                // Calculate the number of days left by dividing the time difference by the number of milliseconds in a day
+                                                const daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
-        return (<tr key={obj.data.name}>
-            <th scope='row'>{ind+1}</th>
-            {/* <td>{obj.data.name}</td> */}
-            <td>{obj.data.date}</td>
-            <td>{obj.data.time}</td>
-            <td className='text-center'>{daysLeft}</td>
-            <td>{obj.data.drName}</td>
-            <td>{obj.data.Address}</td>
-        </tr>)
+                                                return (<tr key={obj.data.name}>
+                                                    <th scope='row'>{ind + 1}</th>
+                                                    {/* <td>{obj.data.name}</td> */}
+                                                    <td>{obj.data.date}</td>
+                                                    <td>{obj.data.time}</td>
+                                                    <td className='text-center'>{daysLeft}</td>
+                                                    <td>{obj.data.drName}</td>
+                                                    <td>{obj.data.Address}</td>
+                                                </tr>)
 
-    
+
                                             }) : (
                                                 <tr>
                                                     <td colspan="6" className='text-center'>
@@ -332,29 +330,19 @@ const daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
                                             ) : (
                                                 <tr>
                                                     <td colspan="6" className='text-center'>
-                                                        <p className=''>Loading</p>
+                                                        <p className=''>Loading... <img src={loading} width='20' />
+                                                        </p>
                                                     </td>
                                                 </tr>
                                             )
                                         }
 
-
-
-
-
-                                     
-
                                     </MDBTableBody>
                                 </MDBTable>
-
-
                             </MDBModalBody>
                         </MDBModalContent>
                     </MDBModalDialog>
                 </MDBModal>
-
-
-
             </div>
         </div>
 

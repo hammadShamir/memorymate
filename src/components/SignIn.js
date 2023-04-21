@@ -37,7 +37,7 @@ function SignIn() {
       setisButtonDisabled(false);
       setTimeout(() => {
         navigate('/home')
-      }, 2000);
+      }, 1000);
 
     } catch (error) {
       console.log(error.message);
