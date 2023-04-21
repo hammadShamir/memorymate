@@ -10,11 +10,16 @@
     text-align: center;
     width: 300px;
     text-decoration: none;
-   
+    background-color: #91c3db;
+    transition: transform 0.3s ease-in-out, background-color 0.2s ease-in-out;
+
   }
+
+
   
-  .small-button:hover {
-    opacity: 0.8;
-    color: orange;
-  }
+.small-button:hover {
+  transform: translateY(-5px);
+  background-color: #7fa8cc; 
+  color: whitesmoke; /* Move the button up by 5 pixels */
+}
   

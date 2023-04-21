@@ -5,6 +5,7 @@ import '../cssfiles/appointment.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 //modal
 import {
     MDBBtn,
@@ -34,6 +35,9 @@ const initialize = {
 
 
 const Appointment = () => {
+
+
+    
 
     const [optSmModal, setOptSmModal] = useState(false);
     const toggleShow = () => setOptSmModal(!optSmModal);
@@ -252,8 +256,8 @@ const Appointment = () => {
                     </div>
 
 
-                    <div>
-                        <button onClick={handleSubmit} style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} className="formbold-btn">Book Appointment</button>
+                    <div >
+                        <button onClick={handleSubmit}  disabled={isBtnDisabled} className="formbold-btn">Book Appointment</button>
                     </div>
                     <div>
                     </div>
@@ -349,7 +353,12 @@ const Appointment = () => {
                     </MDBModalDialog>
                 </MDBModal>
             </div>
+
+
         </div>
+
+
+                        
 
     )
 }

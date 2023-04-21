@@ -61,13 +61,7 @@
     cursor: pointer;
     margin-top: 15px;
   }
-  .formbold-btn:hover , .button_relative:hover{
-    background-color: #4589a8;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-    transform: scale(1.05);
-  }
-
-
+  
 .button_relative{
   text-align: center;
   width: auto;
@@ -87,6 +81,13 @@ top: 4%;
   
 
 }
+  .formbold-btn:hover , .button_relative:hover{
+    background-color: #4589a8;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+    transform: scale(1.05);
+  }
+
+
 
 #padding_15 {
   
