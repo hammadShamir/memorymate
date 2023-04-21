@@ -164,9 +164,9 @@ const Gallery = () => {
     return (
         <div className='row gap-2 py-4'>
             <div className="col-12 m-auto ps-0 d-flex justify-content-between">
-                <h2 style={{ fontWeight: 'bold', fontSize: '30px', color: 'rgb(64 105 124)' }} className="  mb-4">Memories Gallery</h2>
+                <h2 style={{ fontWeight: 'bold', fontSize: '2rem', color: 'rgb(64 105 124)' }} className="px-3  mb-4">Memories Gallery</h2>
 
-                <p style={{ display: 'block', color: `rgb(161 115 27)` }}>Click on  +  to add new images into gallery</p>
+                <p style={{maxWidth:'50%', display: 'block', color: `rgb(161 115 27)` }}>Click on  +  to add new images into gallery</p>
                 <button title='Add New Image'
                     className='btn btn-primary buttonImage'
                     onClick={() => setOptSmModal(!optSmModal)}

@@ -104,14 +104,14 @@ const Contact = () => {
 
     return (
         <div className='row gap-3'>
-            <div className="col-8 m-auto ps-0 d-flex justify-content-between">
+            <div className="col-10 col-sm-11 col-md-8 m-auto ps-0 d-flex justify-content-between align-items-center">
                 <h3>Your Contacts</h3>
-                <button
-                    className='btn btn-primary'
+                <button  
+                    className='formbold-btn btn_contact'
                     onClick={() => setOptSmModal(!optSmModal)}
-                >Add Contact</button>
+                >+</button>
             </div>
-            <div className="col-8 col-sm-11 col-md-8 m-auto border shadow">
+            <div className="col-10 col-sm-11 col-md-8 m-auto border shadow">
             <div className="table-responsive">
                 <table className="table table-striped">
                     <thead>
@@ -268,7 +268,7 @@ const Contact = () => {
             />
 
 
-<MDBModal show={welcomeModal} tabIndex='-1' setShow={setWelcomeModal}>
+    <MDBModal show={welcomeModal} tabIndex='-1' setShow={setWelcomeModal}>
                     <MDBModalDialog size='md'>
                         <MDBModalContent>
                             <MDBModalHeader>

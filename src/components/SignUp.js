@@ -67,7 +67,7 @@ const SignUp = () => {
 
                 <form onSubmit={handleSignUp} style={{ position: `relative` }}>
                     <div className="formbold-form-title">
-                        <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className=" mt-5 mb-4">Welcome to MemoryMate!</h2>
+                        <h2 style={{ fontWeight: 'bold', fontSize: '30px' }} className=" mt-2 mb-4">Welcome to MemoryMate!</h2>
                         <p>Please fill in the following information to create your account.</p>
                     </div>
                     <div className="formbold-input-flex">

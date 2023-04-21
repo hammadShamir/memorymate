@@ -28,7 +28,7 @@ const ProfileDropdown = () => {
 
 
     return (
-        <div className="dropdown">
+        <div style={{position:'relative'}} className="dropdown">
             <button
                 style={{ backgroundColor: `#071D3B`, color: `#fff` }}
                 className="btn dropdown-toggle"
@@ -38,8 +38,8 @@ const ProfileDropdown = () => {
             >
                 {user ? user.displayName : 'Guest'}
             </button>
-            <div className={`dropdown-menu ${isOpen ? 'show' : ''}`} aria-labelledby="profile-dropdown" >
-                <button className="dropdown-item" onClick={handleSignOutClick} >Sign Out</button>
+            <div style={{position:'absolute' , right:0}} className={`dropdown-menu ${isOpen ? 'show' : ''}`} aria-labelledby="profile-dropdown" >
+                <button className="dropdown-item " onClick={handleSignOutClick} >Sign Out</button>
             </div>
         </div>
     );

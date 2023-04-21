@@ -17,7 +17,7 @@ const Slide = ({ img, heading, para, button, path }) => {
             {img && (
             <div style={{position:'relative'}} className=" align-items-stretch col col-md-5 align-self-center d-flex justify-content-center align-items-center">
                 <img  style={{ aspectRatio: `9/6` }} className='slide-img' src={img} alt="" />
-               {!button && <h3 className='fw-bold fs-1' style={{position:'absolute' , bottom:'15%',left:'50%',zIndex:'100',transform:`translate(-50%,80%)`,width:'100%'}}>Slide Right to Explore</h3>}
+               {!button && <h3 className='fw-bold fs-3 ' style={{position:'absolute' , bottom:'15%',left:'50%',zIndex:'100',transform:`translate(-50%,80%)`,width:'70%',wordBreak:`break-word`}}>Slide Right to Explore</h3>}
             </div>
             )}
         </div>

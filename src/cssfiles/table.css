@@ -30,7 +30,7 @@
   top: 0;
   text-align: left;
   font-weight: bold; /* make fixed column text bold */
-  background-color: #f2f2f2; /* set background color for fixed column */
+  background-color: #f2f2f2 !important; /* set background color for fixed column */
   border: 1px solid #dee2e6; /* add border to fixed column cells */
   z-index: 1; /* make sure the fixed column is in front of the scrollable content */
   width: 150px; /* set the width of the fixed column */
@@ -60,4 +60,19 @@
 
 .table th:not(:first-child) {
   border-left: none;
+}
+
+
+
+
+/* contact button */
+
+.btn_contact{
+ width:60px !important;
+ background-color: #071D3B !important;
+ transition: all 0.3s;
+}
+
+.btn_contact:hover{
+  background-color: rgb(107, 162, 188) !important;
 }

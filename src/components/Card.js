@@ -2,7 +2,7 @@ import React from 'react'
 
 const Card = ({ img, title, note, date }) => {
   return (
-    <div className="col-12 col-md-3">
+    <div className="col-12 col-md-4 col-lg-3 col-sm-6">
       <div className="card shadow" >
         <img className="card-img-top shadow" src={img} alt="Card image cap" style={{ aspectRatio: "9/6" }} />
         <div className="card-body">
