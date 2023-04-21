@@ -34,8 +34,8 @@ const SliderComponent = () => {
         <Slider {...settings} >
             <Slide
                 img={appointment}
-                heading={`Welcome ${user && user.displayName}`}
-                para={"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque nostrum minima fugit tempora illum tempore, rem, libero reiciendis eius aperiam similique, id officiis odit obcaecati sapiente sit voluptatibus expedita! Quo necessitatibus eius quidem ad?"}
+                heading={`Welcome to MemoryMate's Appointment panel.`}
+                para={"We understand that finding the right doctor and booking an appointment can be a daunting task, which is why we’ve made it simple and convenient for you. Our team of experienced doctors specialize in treating Dementia, They are dedicated to providing personalized and compassionate care to each and every patient."}
                 button={"Appointment"}
                 path={'/appointment'}
             />
