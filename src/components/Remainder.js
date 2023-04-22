@@ -74,7 +74,7 @@ const Remainder = () => {
     e.preventDefault()
     setisButtonDisabled(true);
     setLoadImg(true);
-    const reminderData = {
+    const RemainderData = {
       medicationName: formData.medicationName,
       dosage: formData.dosage,
       frequency: formData.frequency,
@@ -83,13 +83,13 @@ const Remainder = () => {
       endDate: formData.endDate,
       currentTime: new Date().toLocaleString()
     }
-    //Storing Reminder 
+    //Storing Remainder 
     await db.collection("users")
       .doc(auth.currentUser.uid)
-      .collection("reminder")
-      .add(reminderData)
+      .collection("Remainder")
+      .add(RemainderData)
       .then(() => {
-        toast.success(`Reminder Added Successfully!`);
+        toast.success(`Remainder Added Successfully!`);
         setFormData(initialValue);
         toggleShow()
         setLoadImg(false);
@@ -97,7 +97,7 @@ const Remainder = () => {
       })
       .catch((error) => {
         console.error('Error adding document: ', error);
-        toast.error('Failed to set Reminder');
+        toast.error('Failed to set Remainder');
         setLoadImg(false);
         setisButtonDisabled(false);
         toggleShow()
@@ -111,8 +111,8 @@ const Remainder = () => {
         if (user) {
           const userId = user.uid;
           // Use userId to access the user's data in Firestore or Realtime Database
-          const remindersCollection = db.collection("users").doc(userId).collection("reminder");
-          const querySnapshot = await remindersCollection.orderBy("currentTime", "desc").get();
+          const RemaindersCollection = db.collection("users").doc(userId).collection("Remainder");
+          const querySnapshot = await RemaindersCollection.orderBy("currentTime", "desc").get();
 
           const remainders = [];
           querySnapshot.forEach((doc) => {
@@ -149,7 +149,7 @@ const Remainder = () => {
   return (
     <div id='padding_15' className="formbold-main-wrapper">
 
-      <div style={{ maxWidth: '700px', position: 'relative' }} className="formbold-form-wrapper mob_form">
+      <div style={{ maxWidth: '700px', position: 'relative' }} className="formbold-form-wrapper mob_form~">
         <div className="formbold-form-title">
 
           <button style={isSmallScreen ? { top: `12%` } : {}} onClick={toggleShow} className="formbold-btn button_relative ">+</button>
@@ -348,9 +348,9 @@ const Remainder = () => {
               </MDBModalHeader>
 
               <MDBModalBody>
-                <h4 className='fw-bold fs-4 mb-3 text-center mob_font'>Welcome to our Medication Reminder panel.</h4>
+                <h4 className='fw-bold fs-4 mb-3 text-center mob_font'>Welcome to our Medication Remainder panel.</h4>
 
-                <p className='fw-light fs-6 text-center'> To take advantage of our medication reminder feature, simply enter the medication name, dose, and time below, and we'll take care of the rest. Our user-friendly interface will provide a comprehensive list of all your medications, with timely reminders to ensure you never miss a dose. Say goodbye to the hassle of keeping track of your medication schedule and take control of your health today.</p>
+                <p className='fw-light fs-6 text-center'> To take advantage of our medication Remainder feature, simply enter the medication name, dose, and time below, and we'll take care of the rest. Our user-friendly interface will provide a comprehensive list of all your medications, with timely Remainders to ensure you never miss a dose. Say goodbye to the hassle of keeping track of your medication schedule and take control of your health today.</p>
 
                 <hr className='m-auto mt-5 mb-3 text-center' style={{ width: '40%' }}></hr>
 
