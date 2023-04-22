@@ -11,67 +11,62 @@ const intialValue = ``;
 
 function SignIn() {
 
-
+  // State hook to track the screen size
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
+  // Effect hook to update the screen size state whenever the screen is resized
   useEffect(() => {
-        const handleResize = () => {      
-          setIsSmallScreen((prevIsSmallScreen) => window.innerWidth < 500);
-          console.log(window.innerWidth )
-          if(window.innerWidth < 600){
-              setIsSmallScreen(true);
-          }else {
-              setIsSmallScreen(false);
-          }
+    const handleResize = () => {      
+      setIsSmallScreen((prevIsSmallScreen) => window.innerWidth < 500);
+      console.log(window.innerWidth )
+      if(window.innerWidth < 600){
+          setIsSmallScreen(true);
+      }else {
+          setIsSmallScreen(false);
       }
+    }
 
-  window.addEventListener('resize', handleResize);
-  handleResize();
-  return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    // Register the handleResize function as an event listener for resize events
+    window.addEventListener('resize', handleResize);
+    // Call the handleResize function immediately to set the initial screen size
+    handleResize();
+    // Unregister the handleResize function as an event listener when the component is unmounted
+    return () => {
+        window.removeEventListener('resize', handleResize);
+      };
   },[setIsSmallScreen]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // State hooks to track the disabled state and loading state of the sign in button
   const [isBtnDisabled, setisButtonDisabled] = useState(false);
   const [loadImg, setLoadImg] = useState(false);
 
+  // State hooks to track the user's email and password input values
   const [email, setEmail] = useState(intialValue);
   const [password, setPassword] = useState(intialValue);
 
+  // React Router hook to navigate to different pages in the app
   const navigate = useNavigate();
+
+  // Function to handle the sign in form submission
   const handleSignIn = async (event) => {
     event.preventDefault();
+    // Set the loading and disabled states for the sign in button to prevent multiple clicks while processing
     setLoadImg(true);
     setisButtonDisabled(true);
 
     try {
+      // Attempt to sign in with the user's email and password
       await auth.signInWithEmailAndPassword(email, password);
+      // Get the user object and generate an access token
       const user = auth.currentUser;
       const token = await user.getIdToken();
-      
+      // Store the access token in local storage
       localStorage.setItem('accessToken', token);
-      
-      // cleanup form values
-      setEmail(intialValue); setPassword(intialValue);
+      // Reset the email and password input values and display a success message
+      setEmail(intialValue);
+      setPassword(intialValue);
       toast.success(`Logged in Successfully`);
+      // Reset the loading and disabled states for the sign in button and navigate to the home page after a short delay
       setLoadImg(false);
       setisButtonDisabled(false);
       setTimeout(() => {
@@ -79,17 +74,21 @@ function SignIn() {
       }, 1000);
 
     } catch (error) {
+      // Log any errors and display an error message to the user
       console.log(error.message);
       toast.error(`Email or Password is Incorrect`);
+      // Reset the password input value and loading and disabled states for the sign in button
       setPassword(intialValue);
       setLoadImg(false);
       setisButtonDisabled(false);
     }
   };
 
+  // Effect hook to remove any access tokens from local storage when the component is mounted
   useEffect(() => {
     localStorage.removeItem("accessToken")
   }, [])
+
 
   return (
     <div className="row h-100">

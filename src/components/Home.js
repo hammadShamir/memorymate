@@ -9,6 +9,7 @@ import slideright from '../images/slideRight.png'
 import appointment from '../images/appointment.png'
 import medicationRemainder from '../images/medicationReminder.png'
 import contactus from '../images/contactus.png'
+import left_arrow from '../images/left-arrow.png'
 
 const SliderComponent = () => {
 
@@ -34,7 +35,7 @@ const SliderComponent = () => {
     return (
         <Slider {...settings} >
             <Slide
-                img={slideright}
+                img={left_arrow}
                 heading={`Welcome to MemoryMate`}
                 para={"Welcome to Memory mate, an application for Dementia patients. Dementia is a common disease among elderly individuals that affects memory, thinking, and communication. It can make everyday activities challenging and sometimes even dangerous. Our app is designed to assist dementia patients in managing their daily lives by providing them with various features such as booking appointments, storing their images and emergency contact information, and creating medication reminders. Our app is easy to use and helps dementia patients remain independent while also providing peace of mind to their loved ones."}
                 // button={"Appointment"}
@@ -49,7 +50,7 @@ const SliderComponent = () => {
             />
             <Slide
                 img={medicationRemainder}
-                heading={`Remaider for taking Medication`}
+                heading={`Remainder for taking Medication`}
                 para={"Introducing our medication remainder feature, designed to help dementia patients keep track of their medication schedules. Our user-friendly interface makes it easy to enter all your medications' names, doses, and times into the system. Once entered, you'll be able to see a comprehensive list of all the medications you need to take, with corresponding times and doses. You'll receive timely reminders to ensure you never miss a dose or take too much medication."}
                 button={"Remainder"}
                 path={'/remainder'}

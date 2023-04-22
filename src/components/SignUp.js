@@ -1,27 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { auth } from '../Firebase'
-import { useNavigate, Link } from 'react-router-dom'
+import { auth } from '../Firebase' // Importing auth from Firebase module
+import { useNavigate, Link } from 'react-router-dom' // Importing useNavigate and Link from react-router-dom
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'; // Importing ToastContainer and toast from react-toastify
+import 'react-toastify/dist/ReactToastify.css'; // Importing css file from react-toastify
 // images
-import loading from '../images/loading.gif'
+import loading from '../images/loading.gif' // Importing loading gif image
 // css
-import '../cssfiles/signup.css'
-
-
+import '../cssfiles/signup.css' // Importing signup css file
 
 
 const SignUp = () => {
+    // State variables
+    const [isSmallScreen, setIsSmallScreen] = useState(false); // To keep track of the screen size
+    const [isBtnDisabled, setisButtonDisabled] = useState(false); // To disable the button while processing
+    const [loadImg, setLoadImg] = useState(false); // To show loading image while processing
+    
+    const navigate = useNavigate() // To navigate between pages in the application
+    
+    // Refs for DOM elements
+    const divRefs = [useRef(null), useRef(null)];
 
-    const [isSmallScreen, setIsSmallScreen] = useState(false);
-
+    // To update isSmallScreen state variable on window resize
     useEffect(() => {
-
-
-
         const handleResize = () => {
-
             console.log(isSmallScreen)
             if (window.innerWidth < 600) {
                 setIsSmallScreen(true);
@@ -37,14 +39,11 @@ const SignUp = () => {
         };
     }, [setIsSmallScreen]);
 
-    const divRefs = [useRef(null), useRef(null)];
-
-
+    // To add or remove classes to div elements on screen size change
     useEffect(() => {
         if (isSmallScreen) {
             divRefs.forEach((ref) => {
                 if (ref.current) {
-
                     ref.current.classList.remove(`formbold-input-flex`);
                     ref.current.classList.add('formbold-mb-3');
                 }
@@ -59,23 +58,11 @@ const SignUp = () => {
         }
     }, [isSmallScreen]);
 
-
-
-
-
-
-
-
-
-
-    const [isBtnDisabled, setisButtonDisabled] = useState(false);
-    const [loadImg, setLoadImg] = useState(false);
-
-    const navigate = useNavigate()
-   
+    // Function to handle sign up
     const handleSignUp = async (e) => {
         e.preventDefault()
         const { email, password, firstname, lastname, username } = e.target.elements;
+
         try {
             // Check if email already exists
             setisButtonDisabled(true);
@@ -96,17 +83,21 @@ const SignUp = () => {
                 username: username.value
             });
 
-            //cleaningup after successfull login
+            // Cleaning up after successful sign up
             email.value = password.value = firstname.value = lastname.value = username.value = ``;
 
             toast.success(`User ${username.value} created successfully!`);
 
+            // Navigate to home page after successful sign up
             setTimeout(() => {
                 navigate('/')
             }, 2000);
+
+            // Resetting state variables
             setLoadImg(false);
             setisButtonDisabled(false);
         } catch (error) {
+            // Show error message
             toast.error('Failed to create user!');
             setLoadImg(false);
             setisButtonDisabled(false);

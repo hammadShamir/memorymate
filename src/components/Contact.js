@@ -25,15 +25,15 @@ const initialValue = {
 
 const Contact = () => {
 
+    // Set up states for the contact page
     const [welcomeModal, setWelcomeModal] = useState(true);
-
-
     const [optSmModal, setOptSmModal] = useState(false);
     const [formData, setFormData] = useState(initialValue);
     const [isBtnDisabled, setisButtonDisabled] = useState(false);
     const [loadImg, setLoadImg] = useState(false);
     const [contact, setContact] = useState();
 
+    // Function to handle adding a new contact
     const handleContact = async (e) => {
         e.preventDefault()
         setLoadImg(true);
@@ -61,16 +61,14 @@ const Contact = () => {
                 setisButtonDisabled(false);
             })
     }
+
+    // Function to fetch contact data from Firestore
     const fetchData = async () => {
         try {
-
-
             auth.onAuthStateChanged(async (user) => {
                 if (user) {
                     const userId = user.uid;
                     // Use userId to access the user's data in Firestore or Realtime Database
-
-
                     const querySnapshot = await db
                         .collection("users")
                         .doc(auth.currentUser && auth.currentUser.uid)
@@ -86,18 +84,14 @@ const Contact = () => {
                         });
                     });
                     setContact(contacts);
-
                 }
             });
-
-
-
         } catch (error) {
             console.error("Error fetching Contacts: ", error);
         }
-
     }
 
+    // Fetch contact data when optSmModal state is updated
     useEffect(() => {
         fetchData()
     }, [optSmModal])
