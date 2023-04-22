@@ -22,7 +22,7 @@ const Slide = ({ img, heading, para, button, path }) => {
             <div style={{position:'relative'}} className={`${order} align-items-stretch col col-md-5 align-self-center d-flex justify-content-center align-items-center`} >
                 <img  style={!button ? { aspectRatio: `9/6`,width:'250px',height:'200px',marginBottom:'40px' } : { aspectRatio: `9/6` }} className='slide-img' src={img} alt="" />
                 {/* Conditionally render text if there is no button prop */}
-                {!button && <h3 className='fw-bold fs-3 ' style={{position:'absolute' , bottom:'15%',left:'50%',zIndex:'100',transform:`translate(-50%,80%)`,width:'70%',wordBreak:`break-word`}}>Slide Left to Explore</h3>}
+                {!button && <h3 className='fw-bold fs-3 ' style={{position:'absolute' , bottom:'15%',left:'50%',zIndex:'100',transform:`translate(-50%,80%)`,width:'70%',wordBreak:`break-word`}}>Slide Right to Explore</h3>}
             </div>
             )}
         </div>

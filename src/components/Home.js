@@ -10,6 +10,7 @@ import appointment from '../images/appointment.png'
 import medicationRemainder from '../images/medicationReminder.png'
 import contactus from '../images/contactus.png'
 import left_arrow from '../images/left-arrow.png'
+import right_arrow from '../images/right_arrow.png'
 
 const SliderComponent = () => {
 
@@ -35,7 +36,7 @@ const SliderComponent = () => {
     return (
         <Slider {...settings} >
             <Slide
-                img={left_arrow}
+                img={right_arrow}
                 heading={`Welcome to MemoryMate`}
                 para={"Welcome to Memory mate, an application for Dementia patients. Dementia is a common disease among elderly individuals that affects memory, thinking, and communication. It can make everyday activities challenging and sometimes even dangerous. Our app is designed to assist dementia patients in managing their daily lives by providing them with various features such as booking appointments, storing their images and emergency contact information, and creating medication reminders. Our app is easy to use and helps dementia patients remain independent while also providing peace of mind to their loved ones."}
                 // button={"Appointment"}
