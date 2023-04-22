@@ -194,7 +194,7 @@ const Remainder = () => {
                     ) : (
                     <tr>
                       <td colSpan="5" className='text-center'>
-                        <p className='text-secondary'>Loading...<img src={loading} width='20' /></p>
+                        <p className='text-secondary'>Loading...<img src={loading} width='20' alt='' /></p>
                       </td>
                     </tr>
                   )
@@ -315,7 +315,7 @@ const Remainder = () => {
                   <button style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} className="formbold-btn">
                     Add Remainder
                   </button>
-                  <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
+                  <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} alt='' />
                 </form>
 
 

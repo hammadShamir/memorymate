@@ -221,8 +221,8 @@ const Gallery = () => {
                             )
                         }) : (
                             <>
-                                <p className='text-center danger text-danger'>Add images to your gallery to display them here</p>
-                                <img style={{ position: 'absolute', maxWidth: '200px', right: '12%', bottom: `16%` }} src={arrow} />
+                                <p className='text-center danger text-danger mt-5'>Add images to your gallery to display them here</p>
+                                <img style={{ position: 'absolute', maxWidth: '200px', right: '12%', bottom: `25%` }} src={arrow} alt='' />
 
                             </>
                         )
@@ -290,7 +290,7 @@ const Gallery = () => {
                                         <img
                                             className="file-upload-image"
                                             src="#"
-                                            alt="your image"
+                                            alt="user's "
                                         />
                                         <div className="image-title-wrap">
                                             <button style={{ width: '80%' }} type="button" onClick={removeImage} className="remove-image">
@@ -307,7 +307,7 @@ const Gallery = () => {
                                         </button>
 
                                     </div>
-                                    <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
+                                    <img src={loading} style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} alt='' />
                                 </div>
                             </form>
 

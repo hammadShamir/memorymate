@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../src/images/logo1.png";
 import ProfileDropdown from "./ProfileMenu";

@@ -5,7 +5,6 @@ import { useNavigate, Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // images
-import register from '../images/register1.png'
 import loading from '../images/loading.gif'
 // css
 import '../cssfiles/signup.css'
@@ -73,7 +72,7 @@ const SignUp = () => {
     const [loadImg, setLoadImg] = useState(false);
 
     const navigate = useNavigate()
-    const [alert, setAlert] = useState({ type: '', message: '' })
+   
     const handleSignUp = async (e) => {
         e.preventDefault()
         const { email, password, firstname, lastname, username } = e.target.elements;
@@ -164,13 +163,11 @@ const SignUp = () => {
                         <label htmlFor="supportCheckbox" className="formbold-checkbox-label">By clicking on the "Register Now" button, you agree to our terms and conditions.</label>
                     </div>
                     <button style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} className="formbold-btn btn_lg" disabled={isBtnDisabled}>Register Now</button>
-                    <img src={loading} style={{ maxWidth: '120px', position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
-                    <br />
-                    <p className='mt-3 mb-3 fw-light'>Already have an account? Click on the "<Link className='fw-bold text-success' to='/signin'>Sign In</Link>" button to access your account.</p>
-                    {/* <p className='fw-light mt-5'>If you have any questions or concerns, please contact us at - <span style={{fontStyle:'italic', color:`rgb(250,168,11)`,fontWeight:'bold'}}> memorymate@gmail.com </span> </p> */}
-
-
-
+                    <img src={loading} style={{maxWidth:'120px', position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} alt=''/>
+                    <br/>
+                 <p className='mt-3 mb-3 fw-light'>Already have an account? Click on the "<Link  className='fw-bold text-success' to='/signin'>Sign In</Link>" button to access your account.</p>
+                {/* <p className='fw-light mt-5'>If you have any questions or concerns, please contact us at - <span style={{fontStyle:'italic', color:`rgb(250,168,11)`,fontWeight:'bold'}}> memorymate@gmail.com </span> </p> */}
+                   
                 </form>
 
                 <ToastContainer

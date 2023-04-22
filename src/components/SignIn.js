@@ -131,7 +131,7 @@ function SignIn() {
           <div className=" text-center  mb-2">
             <button style={{ background: isBtnDisabled ? `gray` : `#91c3db`, cursor: isBtnDisabled ? `wait` : `` }} className="formbold-btn btn_lg" disabled={isBtnDisabled} type="submit" >Sign In</button>
           </div>
-          <img src={loading} style={{maxWidth:'120px', position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} />
+          <img src={loading} style={{maxWidth:'120px', position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%,-50%)`, display: loadImg ? `flex` : `none` }} alt='' />
        
         <p className='mt-3 mb-5 fw-light'>Don't have an account yet? Click on the "<Link  className='fw-bold text-success' to='/signup'>Sign Up</Link>" button to create one.</p>
         </form>
